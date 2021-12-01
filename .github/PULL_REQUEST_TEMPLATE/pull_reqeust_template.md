@@ -16,6 +16,8 @@
     - [ ] 💎 Style    
     - [ ] 🧪 Test
 
+    <!-- Please check boxes accordingly, and remove the others to avoid creating "tasks" -->
+
 ## Description
 <!--- Describe your changes in detail -->
 

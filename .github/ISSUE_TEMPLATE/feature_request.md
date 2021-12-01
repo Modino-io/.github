@@ -9,7 +9,7 @@ assignees: ''
 
 ## I'm submitting a ...
 
-- [x] feature request
+- feature request
 
 ## What is the motivation / use case for changing the behavior?
 <!--- Briefly describe what is this bug/feature about (one – two sentences) -->

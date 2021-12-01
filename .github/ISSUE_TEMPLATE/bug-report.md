@@ -9,7 +9,7 @@ assignees: ''
 
 ## I'm submitting a ...
 
-- [x] bug report
+- bug report
 
 ## Steps to Reproduce
 <!--- Provide a link to a live example, or an unambiguous set of steps to -->

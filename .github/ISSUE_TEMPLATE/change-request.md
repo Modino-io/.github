@@ -9,7 +9,7 @@ assignees: ''
 
 ## I'm submitting a ...
 
-- [x] change request
+- change request
 
 ## What is the motivation / use case for changing the behavior?
 <!--- Briefly describe what is this change request about (one – two sentences) -->

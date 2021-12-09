@@ -1,0 +1,28 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "blazejpawlak",
+      "name": "Błażej Pawlak",
+      "avatar_url": "https://avatars.githubusercontent.com/u/228705?v=4",
+      "profile": "https://smartcoders.xyz/",
+      "contributions": [
+        "review",
+        "code",
+        "security",
+        "doc",
+        "content"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": ".github",
+  "projectOwner": "Modino-io",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

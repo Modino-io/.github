@@ -118,7 +118,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: Modino-io/modino-iot-agent
-          path: modino-artifact-backend
+          path: modino-iot-agent
           ref: ${{ inputs.MODINO_AGENT_VERSION }}
           token: ${{ secrets.GIT_TOKEN }}
 

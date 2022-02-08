@@ -114,39 +114,21 @@ jobs:
           ref: ${{ inputs.MODINO_ARTIFACT_BACKEND_VERSION }}
           token: ${{ secrets.GIT_TOKEN }}
 
-      - name: directory test 1
-        run: |
-          echo "LS:"
-          ls -la
-          echo "PWD:"
-          pwd
-          echo "WORKSPACE:"
-          echo ${{ github.workspace }}
-
       - name: Setup directories
         run: |
-          ${{ github.workspace }}/modino-devops/e2e-test/prepareTestDirectories.sh
+          ./modino-devops/e2e-test/prepareTestDirectories.sh
         env:
           PASSWD: ${{ secrets.TEST_PASSWD }}
 
-      - name: directory test 2
-        run: |
-          echo "LS:"
-          ls -la
-          echo "PWD:"
-          pwd
-          echo "WORKSPACE:"
-          echo ${{ github.workspace }}
-
       - name: Generate keys
         run: |
-          ${{ github.workspace }}/modino-devops/e2e-test/prepareRSA.sh
+          ./modino-devops/e2e-test/prepareRSA.sh
         env:
           PASSWD: ${{ secrets.TEST_PASSWD }}
 
       - name: Setup mqtt config
         run: |
-          ${{ github.workspace }}/modino-devops/e2e-test/prepareTestMqtt.sh
+          ./modino-devops/e2e-test/prepareTestMqtt.sh
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
           PASSWD: ${{ secrets.TEST_PASSWD }}
@@ -161,7 +143,7 @@ jobs:
       - name: Setup singularity key
         run: | 
           echo ---Starting up docker---
-          docker-compose -f ${{ github.workspace }}/modino-devops/e2e-test/docker-compose.test.setup.yml up
+          docker-compose -f ./modino-devops/e2e-test/docker-compose.test.setup.yml up
           echo ---Containers up---
         env:
           PASSWD: ${{ secrets.TEST_PASSWD }}
@@ -169,7 +151,7 @@ jobs:
           
       - name: Place key.asc
         run: |
-          ${{ github.workspace }}/modino-devops/e2e-test/moveKey.sh
+          ./modino-devops/e2e-test/moveKey.sh
 
       - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.7.0
@@ -180,7 +162,7 @@ jobs:
       - name: Setup docker services
         run: | 
           echo ---Starting up docker---
-          docker-compose -f ${{ github.workspace }}/modino-devops/e2e-test/docker-compose.test.yml up -d
+          docker-compose -f ./modino-devops/e2e-test/docker-compose.test.yml up -d
           echo ---Containers up---
           docker ps
         env:
@@ -207,8 +189,8 @@ jobs:
 
       - name: wait fot it
         run: |
-          ${{ github.workspace }}/modino-devops/e2e-test/wait-for-it.sh localhost:8080 -- echo "backend up"
-          ${{ github.workspace }}/modino-devops/e2e-test/wait-for-it.sh localhost:8085 -- echo "builder up"
+          ./modino-devops/e2e-test/wait-for-it.sh localhost:8080 -- echo "backend up"
+          ./modino-devops/e2e-test/wait-for-it.sh localhost:8085 -- echo "builder up"
           
       - uses: actions/setup-java@v2
         with:
@@ -221,7 +203,7 @@ jobs:
       - name: Testing!
         run: |
           echo "change dir to artifact backend"
-          cd ${{ github.workspace }}/modino-artifact-backend
+          cd ./modino-artifact-backend
           echo "start gradle"
           ./gradlew clean build --info
         env:
@@ -246,19 +228,19 @@ jobs:
       - name: Get Result
         if: always()
         run: |
-          mkdir .${{ github.workspace }}/modino-devops/myTestResults
-          cp -r ${{ github.workspace }}/modino-artifact-backend/build/test-results/ ${{ github.workspace }}/modino-devops/myTestResults
-          cp -r ${{ github.workspace }}/modino-artifact-backend/build/reports/tests/ ${{ github.workspace }}/modino-devops/myTestResults
+          mkdir ./modino-devops/myTestResults
+          cp -r ./modino-artifact-backend/build/test-results/ ./modino-devops/myTestResults
+          cp -r ./modino-artifact-backend/build/reports/tests/ ./modino-devops/myTestResults
 
       - name: Dump docker logs on failure
         if: always()
         uses: jwalton/gh-docker-logs@v1
         with:
-          dest: ${{ github.workspace }}/modino-devops/myTestResults
+          dest: ./modino-devops/myTestResults
 
       - name: Publish results as artifact
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: test-results
-          path: ${{ github.workspace }}/modino-devops/myTestResults/
+          path: ./modino-devops/myTestResults/

@@ -84,7 +84,7 @@ jobs:
           repository: Modino-io/modino-devops
           path: modino-devops
           ref: ${{ inputs.MODINO_DEVOPS_VERSION }}
-          token: ${{ github.token }}
+          token: ${{ secrets.GIT_TOKEN }}
 
       - name: Checkout Modino-io/modino repository
         uses: actions/checkout@v2
@@ -92,14 +92,14 @@ jobs:
           repository: Modino-io/modino
           path: modino
           ref: ${{ inputs.MODINO_VERSION }}
-          token: ${{ github.token }}
+          token: ${{ secrets.GIT_TOKEN }}
 
       - name: Checkout Modino-io/modino-mqtt-broker repository
         uses: actions/checkout@v2
         with:
           repository: Modino-io/modino-mqtt-broker
           path: modino-mqtt-broker
-          token: ${{ github.token }}
+          token: ${{ secrets.GIT_TOKEN }}
 
       - name: Checkout Modino-io/modino-artifact-backend repository
         uses: actions/checkout@v2
@@ -107,7 +107,7 @@ jobs:
           repository: Modino-io/modino-artifact-backend
           path: modino-artifact-backend
           ref: ${{ inputs.MODINO_ARTIFACT_BACKEND_VERSION }}
-          token: ${{ github.token }}
+          token: ${{ secrets.GIT_TOKEN }}
 
       - name: Setup directories
         run: |
@@ -202,7 +202,7 @@ jobs:
           echo "start gradle"
           ./gradlew clean build --info
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           SPRING_MONGO_URI: ${{ secrets.TEST_MONGO_URI }}
           BACKEND_DATABASE_NAME: ${{ secrets.TEST_BACKEND_DATABASE_NAME }}
           ENDPOINT: ${{ secrets.TEST_ENDPOINT }}

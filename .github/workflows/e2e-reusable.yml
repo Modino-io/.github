@@ -1,0 +1,242 @@
+name: e2e test
+
+on:
+  workflow_call:
+    inputs:
+      DOCKER_BACKEND_VERSION:
+        required: true
+        type: string
+      DOCKER_BUILDER_BACKEND_VERSION:
+        required: true
+        type: string
+      DOCKER_BUILDER_SCRIPT_VERSION:
+        required: true
+        type: string
+      MODINO_ARTIFACT_BACKEND_VERSION:
+        required: true
+        type: string
+      MODINO_VERSION:
+        required: true
+        type: string
+      MODINO_DEVOPS_VERSION:
+        required: true
+        type: string
+      MODINO_MQTT_BROKER_VERSION:
+        required: true
+        type: string
+    secrets:
+      GIT_USERNAME: #OK
+        required: true
+      GIT_TOKEN:  #OK
+        required: true
+      GITLAB_USERNAME: #OK
+        required: true
+      GITLAB_PACKAGES_TOKEN: #OK
+        required: true
+      TEST_MONGO_URI: #OK DOCKER_MONGO_URI
+        required: true
+      TEST_APIKEY: #OK ADDED TEST
+        required: true
+      TEST_SERVICE_CRN: #OK ADDED TEST
+        required: true
+      TEST_BUCKET_LOCATION: #OK ADDED TEST
+        required: true
+      TEST_BUCKET_NAME: #OK ADDED TEST
+        required: true
+      TEST_ENDPOINT: #OK ADDED TEST
+        required: true
+      TEST_COS_HMAC_ACCESS_KEY_ID: #OK ADDED TEST
+        required: true
+      TEST_COS_HMAC_SECRET_ACCESS_KEY_ID: #OK ADDED TEST
+        required: true
+      TEST_BACKEND_DATABASE_NAME: #OK ADDED TEST
+        required: true
+      TEST_BUILDER_BACKEND_URL: #OK DOCKER_BUILDER_BACKEND_URL
+        required: true
+      TEST_MQTT_USERNAME: # TO DELETE ADDED TEST
+        required: true
+      TEST_MQTT_PASSWORD: # TO DELETE ADDED TEST
+        required: true
+      TEST_MQTT_TOPIC: #TO DELETE ADDED TEST
+        required: true
+      TEST_REPLICA_SET_NAME: #OK ADDED TEST
+        required: true
+      TEST_PASSWD: #OK
+        required: true
+      TEST_DOCKER_ARTIFACT_BACKEND_URL: #OK ADDED TEST
+        required: true
+      TEST_DOCKER_BUILDER_BACKEND_URL: #OK ADDED TEST
+        required: true
+      TEST_DOCKER_MONGO_URI: #OK ADDED TEST
+        required: true
+      TEST_LOGS_URL: #OK ADDED TEST
+        required: true
+      TEST_MQTT_ADDRESS: #OK ADDED TEST
+        required: true
+
+jobs:
+  testci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Modino-io/modino-devops repository
+        uses: actions/checkout@v2
+        with:
+          repository: Modino-io/modino-devops
+          path: modino-devops
+          ref: ${{ inputs.MODINO_DEVOPS_VERSION }}
+          token: ${{ github.token }}
+
+      - name: Checkout Modino-io/modino repository
+        uses: actions/checkout@v2
+        with:
+          repository: Modino-io/modino
+          path: modino
+          ref: ${{ inputs.MODINO_VERSION }}
+          token: ${{ github.token }}
+
+      - name: Checkout Modino-io/modino-mqtt-broker repository
+        uses: actions/checkout@v2
+        with:
+          repository: Modino-io/modino-mqtt-broker
+          path: modino-mqtt-broker
+          token: ${{ github.token }}
+
+      - name: Checkout Modino-io/modino-artifact-backend repository
+        uses: actions/checkout@v2
+        with:
+          repository: Modino-io/modino-artifact-backend
+          path: modino-artifact-backend
+          ref: ${{ inputs.MODINO_ARTIFACT_BACKEND_VERSION }}
+          token: ${{ github.token }}
+
+      - name: Setup directories
+        run: |
+          ./modino-devops/.github/prepareTestDirectories.sh
+        env:
+          PASSWD: ${{ secrets.TEST_PASSWD }}
+
+      - name: Generate keys
+        run: |
+          ./modino-devops/.github/prepareRSA.sh
+        env:
+          PASSWD: ${{ secrets.TEST_PASSWD }}
+
+      - name: Setup mqtt config
+        run: |
+          ./modino-devops/.github/prepareTestMqtt.sh
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          PASSWD: ${{ secrets.TEST_PASSWD }}
+
+      - name: Login to Gitlab Docker Registry
+        uses: docker/login-action@v1
+        with:
+          registry: registry.smartcoders.xyz:5000
+          username: ${{ secrets.GITLAB_USERNAME }}
+          password: ${{ secrets.GITLAB_PACKAGES_TOKEN }}
+
+      - name: Setup singularity key
+        run: | 
+          echo ---Starting up docker---
+          docker-compose -f ./modino-devops/docker-compose.test.setup.yml up
+          echo ---Containers up---
+        env:
+          PASSWD: ${{ secrets.TEST_PASSWD }}
+          DOCKER_BUILDER_SCRIPT_VERSION: ${{ inputs.DOCKER_BUILDER_SCRIPT_VERSION }}
+          
+      - name: Place key.asc
+        run: |
+          ./modino-devops/.github/moveKey.sh
+
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.7.0
+        with:
+          mongodb-version: 4.4
+          mongodb-replica-set: ${{ secrets.TEST_REPLICA_SET_NAME }}
+
+      - name: Setup docker services
+        run: | 
+          echo ---Starting up docker---
+          docker-compose -f ./modino-devops/docker-compose.test.yml up -d
+          echo ---Containers up---
+          docker ps
+        env:
+          DOCKER_BACKEND_VERSION: ${{ inputs.DOCKER_BACKEND_VERSION }}
+          DOCKER_BUILDER_BACKEND_VERSION: ${{ inputs.DOCKER_BUILDER_BACKEND_VERSION }}
+          DOCKER_BUILDER_SCRIPT_VERSION: ${{ inputs.DOCKER_BUILDER_SCRIPT_VERSION }}
+          SPRING_MONGO_URI: ${{ secrets.TEST_MONGO_URI }}
+          APIKEY: ${{ secrets.TEST_APIKEY }}
+          SERVICE_CRN: ${{ secrets.TEST_SERVICE_CRN }}
+          BUCKET_LOCATION: ${{ secrets.TEST_BUCKET_LOCATION }}
+          BUCKET_NAME: ${{ secrets.TEST_BUCKET_NAME }}
+          ENDPOINT: ${{ secrets.TEST_ENDPOINT }}
+          COS_HMAC_ACCESS_KEY_ID: ${{ secrets.TEST_COS_HMAC_ACCESS_KEY_ID }}
+          COS_HMAC_SECRET_ACCESS_KEY_ID: ${{ secrets.TEST_COS_HMAC_SECRET_ACCESS_KEY_ID }}
+          ARTIFACT_BACKEND_DATABASE_NAME: ${{ secrets.TEST_BACKEND_DATABASE_NAME }}
+          BUILDER_BACKEND_URL: ${{ secrets.TEST_BUILDER_BACKEND_URL }}
+          MQTT_USERNAME: ${{ secrets.TEST_MQTT_USERNAME }}
+          MQTT_PASSWORD: ${{ secrets.TEST_MQTT_PASSWORD }}
+          MQTT_TOPIC: ${{ secrets.TEST_MQTT_TOPIC }}
+          ARTIFACT_BACKEND_URL: ${{ secrets.TEST_DOCKER_ARTIFACT_BACKEND_URL }}
+          PASSWD: ${{ secrets.TEST_PASSWD }}
+          REPLICA_SET_NAME: ${{ secrets.TEST_REPLICA_SET_NAME }}
+          BACKEND_DATABASE_NAME: ${{ secrets.TEST_BACKEND_DATABASE_NAME }}
+
+      - name: wait fot it
+        run: |
+          ./modino-devops/.github/wait-for-it.sh localhost:8080 -- echo "backend up"
+          ./modino-devops/.github/wait-for-it.sh localhost:8085 -- echo "builder up"
+          
+      - uses: actions/setup-java@v2
+        with:
+          java-version: "8"
+          distribution: "adopt"
+      
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+
+      - name: Testing!
+        run: |
+          echo "change dir to artifact backend"
+          cd ./modino-artifact-backend
+          echo "start gradle"
+          ./gradlew clean build --info
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          SPRING_MONGO_URI: ${{ secrets.TEST_MONGO_URI }}
+          BACKEND_DATABASE_NAME: ${{ secrets.TEST_BACKEND_DATABASE_NAME }}
+          ENDPOINT: ${{ secrets.TEST_ENDPOINT }}
+          COS_LOCATION: ${{ secrets.TEST_BUCKET_LOCATION }}
+          COS_HMAC_ACCESS_KEY_ID: ${{ secrets.TEST_COS_HMAC_ACCESS_KEY_ID }}
+          COS_HMAC_SECRET_ACCESS_KEY_ID: ${{ secrets.TEST_COS_HMAC_SECRET_ACCESS_KEY_ID }}
+          BUCKET_NAME: ${{ secrets.TEST_BUCKET_NAME }}
+          BUILDER_BACKEND_URL: ${{ secrets.TEST_BUILDER_BACKEND_URL }}
+          BACKEND_DATABASE_NAME: ${{ secrets.TEST_BACKEND_DATABASE_NAME }}
+          TEST_PROJECT_TOPIC: ${{ secrets.TEST_MQTT_TOPIC }}
+          GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+          GITLAB_PACKAGES_TOKEN: ${{ secrets.GITLAB_PACKAGES_TOKEN }}
+          APIKEY: ${{ secrets.TEST_APIKEY }}
+          SERVICE_CRN: ${{ secrets.SERVICE_CRN }}
+          REPLICA_SET_NAME: ${{ secrets.TEST_REPLICA_SET_NAME }}
+          GITLAB_USERNAME: ${{ secrets.GITLAB_USERNAME }}
+
+      - name: Get Result
+        if: always()
+        run: |
+          mkdir ./modino-devops/myTestResults
+          cp -r ./modino-artifact-backend/build/test-results/ ./modino-devops/myTestResults
+          cp -r ./modino-artifact-backend/build/reports/tests/ ./modino-devops/myTestResults
+
+      - name: Dump docker logs on failure
+        if: always()
+        uses: jwalton/gh-docker-logs@v1
+        with:
+          dest: ./modino-devops/myTestResults
+
+      - name: Publish results as artifact
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: test-results
+          path: ./modino-devops/myTestResults/

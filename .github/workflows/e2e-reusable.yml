@@ -211,7 +211,6 @@ jobs:
           COS_HMAC_SECRET_ACCESS_KEY_ID: ${{ secrets.TEST_COS_HMAC_SECRET_ACCESS_KEY_ID }}
           BUCKET_NAME: ${{ secrets.TEST_BUCKET_NAME }}
           BUILDER_BACKEND_URL: ${{ secrets.TEST_BUILDER_BACKEND_URL }}
-          BACKEND_DATABASE_NAME: ${{ secrets.TEST_BACKEND_DATABASE_NAME }}
           TEST_PROJECT_TOPIC: ${{ secrets.TEST_MQTT_TOPIC }}
           GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
           GIT_TOKEN: ${{ secrets.GIT_TOKEN }}

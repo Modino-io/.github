@@ -24,6 +24,9 @@ on:
       MODINO_MQTT_BROKER_VERSION:
         required: true
         type: string
+      CALLER:
+        required: true
+        type: string
     secrets:
       GIT_USERNAME: #OK
         required: true
@@ -111,19 +114,19 @@ jobs:
 
       - name: Setup directories
         run: |
-          ./modino-devops/.github/prepareTestDirectories.sh
+          ./${{ inputs.CALLER }}/modino-devops/.github/prepareTestDirectories.sh
         env:
           PASSWD: ${{ secrets.TEST_PASSWD }}
 
       - name: Generate keys
         run: |
-          ./modino-devops/.github/prepareRSA.sh
+          ./${{ inputs.CALLER }}/modino-devops/.github/prepareRSA.sh
         env:
           PASSWD: ${{ secrets.TEST_PASSWD }}
 
       - name: Setup mqtt config
         run: |
-          ./modino-devops/.github/prepareTestMqtt.sh
+          ./${{ inputs.CALLER }}/modino-devops/.github/prepareTestMqtt.sh
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
           PASSWD: ${{ secrets.TEST_PASSWD }}
@@ -138,7 +141,7 @@ jobs:
       - name: Setup singularity key
         run: | 
           echo ---Starting up docker---
-          docker-compose -f ./modino-devops/docker-compose.test.setup.yml up
+          docker-compose -f ./${{ inputs.CALLER }}/modino-devops/docker-compose.test.setup.yml up
           echo ---Containers up---
         env:
           PASSWD: ${{ secrets.TEST_PASSWD }}
@@ -146,7 +149,7 @@ jobs:
           
       - name: Place key.asc
         run: |
-          ./modino-devops/.github/moveKey.sh
+          ./${{ inputs.CALLER }}/modino-devops/.github/moveKey.sh
 
       - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.7.0
@@ -157,7 +160,7 @@ jobs:
       - name: Setup docker services
         run: | 
           echo ---Starting up docker---
-          docker-compose -f ./modino-devops/docker-compose.test.yml up -d
+          docker-compose -f ./${{ inputs.CALLER }}/modino-devops/docker-compose.test.yml up -d
           echo ---Containers up---
           docker ps
         env:
@@ -184,8 +187,8 @@ jobs:
 
       - name: wait fot it
         run: |
-          ./modino-devops/.github/wait-for-it.sh localhost:8080 -- echo "backend up"
-          ./modino-devops/.github/wait-for-it.sh localhost:8085 -- echo "builder up"
+          ./${{ inputs.CALLER }}/modino-devops/.github/wait-for-it.sh localhost:8080 -- echo "backend up"
+          ./${{ inputs.CALLER }}/modino-devops/.github/wait-for-it.sh localhost:8085 -- echo "builder up"
           
       - uses: actions/setup-java@v2
         with:
@@ -198,7 +201,7 @@ jobs:
       - name: Testing!
         run: |
           echo "change dir to artifact backend"
-          cd ./modino-artifact-backend
+          cd ./${{ inputs.CALLER }}/modino-artifact-backend
           echo "start gradle"
           ./gradlew clean build --info
         env:
@@ -223,19 +226,19 @@ jobs:
       - name: Get Result
         if: always()
         run: |
-          mkdir ./modino-devops/myTestResults
-          cp -r ./modino-artifact-backend/build/test-results/ ./modino-devops/myTestResults
-          cp -r ./modino-artifact-backend/build/reports/tests/ ./modino-devops/myTestResults
+          mkdir ./${{ inputs.CALLER }}/modino-devops/myTestResults
+          cp -r ./${{ inputs.CALLER }}/modino-artifact-backend/build/test-results/ ./modino-devops/myTestResults
+          cp -r ./${{ inputs.CALLER }}/modino-artifact-backend/build/reports/tests/ ./modino-devops/myTestResults
 
       - name: Dump docker logs on failure
         if: always()
         uses: jwalton/gh-docker-logs@v1
         with:
-          dest: ./modino-devops/myTestResults
+          dest: ./${{ inputs.CALLER }}/modino-devops/myTestResults
 
       - name: Publish results as artifact
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: test-results
-          path: ./modino-devops/myTestResults/
+          path: ./${{ inputs.CALLER }}./${{ inputs.CALLER }}/modino-devops/myTestResults/

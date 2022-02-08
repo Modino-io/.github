@@ -32,6 +32,8 @@ on:
         required: true
       GIT_TOKEN:  #OK
         required: true
+      GITLAB_TOKEN:  #OK
+        required: true
       GITLAB_USERNAME: #OK
         required: true
       GITLAB_PACKAGES_TOKEN: #OK

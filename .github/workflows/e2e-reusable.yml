@@ -114,11 +114,29 @@ jobs:
           ref: ${{ inputs.MODINO_ARTIFACT_BACKEND_VERSION }}
           token: ${{ secrets.GIT_TOKEN }}
 
+      - name: directory test 1
+        run: |
+          echo "LS:"
+          ls -la
+          echo "PWD:"
+          pwd
+          echo "WORKSPACE:"
+          echo ${{ github.workspace }}
+
       - name: Setup directories
         run: |
           ${{ github.workspace }}/modino-devops/e2e-test/prepareTestDirectories.sh
         env:
           PASSWD: ${{ secrets.TEST_PASSWD }}
+
+      - name: directory test 2
+        run: |
+          echo "LS:"
+          ls -la
+          echo "PWD:"
+          pwd
+          echo "WORKSPACE:"
+          echo ${{ github.workspace }}
 
       - name: Generate keys
         run: |
@@ -143,7 +161,7 @@ jobs:
       - name: Setup singularity key
         run: | 
           echo ---Starting up docker---
-          docker-compose -f ${{ github.workspace }}/modino-devops/docker-compose.test.setup.yml up
+          docker-compose -f ${{ github.workspace }}/modino-devops/e2e-test/docker-compose.test.setup.yml up
           echo ---Containers up---
         env:
           PASSWD: ${{ secrets.TEST_PASSWD }}
@@ -162,7 +180,7 @@ jobs:
       - name: Setup docker services
         run: | 
           echo ---Starting up docker---
-          docker-compose -f ${{ github.workspace }}/modino-devops/docker-compose.test.yml up -d
+          docker-compose -f ${{ github.workspace }}/modino-devops/e2e-test/docker-compose.test.yml up -d
           echo ---Containers up---
           docker ps
         env:

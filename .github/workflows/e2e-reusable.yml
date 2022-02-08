@@ -114,19 +114,19 @@ jobs:
 
       - name: Setup directories
         run: |
-          ${{ github.workspace }}/modino-devops/.github/prepareTestDirectories.sh
+          ${{ github.workspace }}/modino-devops/e2e-test/prepareTestDirectories.sh
         env:
           PASSWD: ${{ secrets.TEST_PASSWD }}
 
       - name: Generate keys
         run: |
-          ${{ github.workspace }}/modino-devops/.github/prepareRSA.sh
+          ${{ github.workspace }}/modino-devops/e2e-test/prepareRSA.sh
         env:
           PASSWD: ${{ secrets.TEST_PASSWD }}
 
       - name: Setup mqtt config
         run: |
-          ${{ github.workspace }}/modino-devops/.github/prepareTestMqtt.sh
+          ${{ github.workspace }}/modino-devops/e2e-test/prepareTestMqtt.sh
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
           PASSWD: ${{ secrets.TEST_PASSWD }}
@@ -149,7 +149,7 @@ jobs:
           
       - name: Place key.asc
         run: |
-          ${{ github.workspace }}/modino-devops/.github/moveKey.sh
+          ${{ github.workspace }}/modino-devops/e2e-test/moveKey.sh
 
       - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.7.0
@@ -187,8 +187,8 @@ jobs:
 
       - name: wait fot it
         run: |
-          ${{ github.workspace }}/modino-devops/.github/wait-for-it.sh localhost:8080 -- echo "backend up"
-          ${{ github.workspace }}/modino-devops/.github/wait-for-it.sh localhost:8085 -- echo "builder up"
+          ${{ github.workspace }}/modino-devops/e2e-test/wait-for-it.sh localhost:8080 -- echo "backend up"
+          ${{ github.workspace }}/modino-devops/e2e-test/wait-for-it.sh localhost:8085 -- echo "builder up"
           
       - uses: actions/setup-java@v2
         with:

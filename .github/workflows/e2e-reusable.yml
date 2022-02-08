@@ -186,6 +186,8 @@ jobs:
           PASSWD: ${{ secrets.TEST_PASSWD }}
           REPLICA_SET_NAME: ${{ secrets.TEST_REPLICA_SET_NAME }}
           BACKEND_DATABASE_NAME: ${{ secrets.TEST_BACKEND_DATABASE_NAME }}
+          MQTT_ADDRESS: ${{ secrets.TEST_BACKEND_DATABASE_NAME }}
+          LOGS_URL: ${{TEST_DOCKER_BUILDER_BACKEND_URL}}
 
       - name: wait fot it
         run: |

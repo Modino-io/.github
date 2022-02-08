@@ -24,7 +24,7 @@ on:
       MODINO_MQTT_BROKER_VERSION:
         required: true
         type: string
-      CALLER:
+      MODINO_AGENT_VERSION:
         required: true
         type: string
     secrets:
@@ -112,6 +112,14 @@ jobs:
           repository: Modino-io/modino-artifact-backend
           path: modino-artifact-backend
           ref: ${{ inputs.MODINO_ARTIFACT_BACKEND_VERSION }}
+          token: ${{ secrets.GIT_TOKEN }}
+
+      - name: Checkout Modino-io/modino-iot-agent repository
+        uses: actions/checkout@v2
+        with:
+          repository: Modino-io/modino-iot-agent
+          path: modino-artifact-backend
+          ref: ${{ inputs.MODINO_AGENT_VERSION }}
           token: ${{ secrets.GIT_TOKEN }}
 
       - name: Setup directories

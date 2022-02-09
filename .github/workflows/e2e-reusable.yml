@@ -215,7 +215,7 @@ jobs:
           echo "change dir to artifact backend"
           cd ./modino-artifact-backend
           echo "start gradle"
-          ./gradlew clean build --info
+          ./gradlew clean build integrationTest --info
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           SPRING_MONGO_URI: ${{ secrets.TEST_MONGO_URI }}

@@ -27,6 +27,9 @@ on:
       MODINO_AGENT_VERSION:
         required: true
         type: string
+      INTEGRATION_TEST:
+        required: true
+        type: string
     secrets:
       GIT_USERNAME: #OK
         required: true
@@ -78,6 +81,10 @@ on:
         required: true
       TEST_MQTT_ADDRESS: #OK ADDED TEST
         required: true
+      MQTT_PORT:
+        required: true
+      MQTT_LOCAL_URL:
+        required: true
 
 jobs:
   testci:
@@ -104,6 +111,7 @@ jobs:
         with:
           repository: Modino-io/modino-mqtt-broker
           path: modino-mqtt-broker
+          ref: ${{ inputs.MODINO_MQTT_BROKER_VERSION }}
           token: ${{ secrets.GIT_TOKEN }}
 
       - name: Checkout Modino-io/modino-artifact-backend repository
@@ -196,6 +204,9 @@ jobs:
           BACKEND_DATABASE_NAME: ${{ secrets.TEST_BACKEND_DATABASE_NAME }}
           MQTT_ADDRESS: ${{ secrets.TEST_BACKEND_DATABASE_NAME }}
           LOGS_URL: ${{ secrets.TEST_DOCKER_BUILDER_BACKEND_URL }}
+          INTEGRATION_TEST: ${{ inputs.INTEGRATION_TEST }}
+          MQTT_PORT: ${{ secrets.MQTT_PORT }}
+          MQTT_LOCAL_URL: ${{ secrets.MQTT_LOCAL_URL }}
 
       - name: wait fot it
         run: |
@@ -234,6 +245,9 @@ jobs:
           SERVICE_CRN: ${{ secrets.SERVICE_CRN }}
           REPLICA_SET_NAME: ${{ secrets.TEST_REPLICA_SET_NAME }}
           GITLAB_USERNAME: ${{ secrets.GITLAB_USERNAME }}
+          INTEGRATION_TEST: ${{ inputs.INTEGRATION_TEST }}
+          MQTT_PORT: ${{ secrets.MQTT_PORT }}
+          MQTT_LOCAL_URL: ${{ secrets.MQTT_LOCAL_URL }}
 
       - name: Get Result
         if: always()

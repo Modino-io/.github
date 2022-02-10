@@ -85,6 +85,8 @@ on:
         required: true
       MQTT_LOCAL_URL:
         required: true
+      BACKEND_VERSION:
+        required: true
 
 jobs:
   testci:
@@ -207,6 +209,7 @@ jobs:
           INTEGRATION_TEST: ${{ inputs.INTEGRATION_TEST }}
           MQTT_PORT: ${{ secrets.MQTT_PORT }}
           MQTT_LOCAL_URL: ${{ secrets.MQTT_LOCAL_URL }}
+          BACKEND_VERSION: ${{ secrets.BACKEND_VERSION }}
 
       - name: wait fot it
         run: |
@@ -255,7 +258,7 @@ jobs:
           mkdir ./modino-devops/myTestResults
           cp -r ./modino-artifact-backend/build/test-results/ ./modino-devops/myTestResults
           cp -r ./modino-artifact-backend/build/reports/tests/ ./modino-devops/myTestResults
-          cp -r ./modino-devops/e2e-test/mosquitto/log/ ./modino-devops/myTestResults
+          sudo cp -r ./modino-devops/e2e-test/mosquitto/log/ ./modino-devops/myTestResults
 
       - name: Dump docker logs on failure
         if: always()

@@ -258,7 +258,6 @@ jobs:
           mkdir ./modino-devops/myTestResults
           cp -r ./modino-artifact-backend/build/test-results/ ./modino-devops/myTestResults
           cp -r ./modino-artifact-backend/build/reports/tests/ ./modino-devops/myTestResults
-          sudo cp -r ./modino-devops/e2e-test/mosquitto/log/ ./modino-devops/myTestResults
 
       - name: Dump docker logs on failure
         if: always()

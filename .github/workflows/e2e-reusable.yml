@@ -202,7 +202,7 @@ jobs:
           PASSWD: ${{ secrets.TEST_PASSWD }}
           REPLICA_SET_NAME: ${{ secrets.TEST_REPLICA_SET_NAME }}
           BACKEND_DATABASE_NAME: ${{ secrets.TEST_BACKEND_DATABASE_NAME }}
-          MQTT_ADDRESS: ${{ secrets.TEST_BACKEND_DATABASE_NAME }}
+          MQTT_ADDRESS: ${{ secrets.TEST_MQTT_ADDRESS }}
           LOGS_URL: ${{ secrets.TEST_DOCKER_BUILDER_BACKEND_URL }}
           INTEGRATION_TEST: ${{ inputs.INTEGRATION_TEST }}
           MQTT_PORT: ${{ secrets.MQTT_PORT }}

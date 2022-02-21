@@ -33,6 +33,9 @@ on:
       INTEGRATION_TEST:
         required: true
         type: string
+      ARCHITECTURE:
+        required: true
+        type: string
     secrets:
       GIT_USERNAME: #OK
         required: true

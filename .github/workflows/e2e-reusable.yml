@@ -176,6 +176,7 @@ jobs:
           echo ---Containers up---
         env:
           PASSWD: ${{ secrets.TEST_PASSWD }}
+          ARCHITECTURE: ${{ inputs.ARCHITECTURE }}
           DOCKER_BUILDER_SCRIPT_VERSION: ${{ inputs.DOCKER_BUILDER_SCRIPT_VERSION }}
           
       - name: Place key.asc

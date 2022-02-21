@@ -27,6 +27,9 @@ on:
       MODINO_AGENT_VERSION:
         required: true
         type: string
+      MODINO_BACK_END:
+        required: true
+        type: string
       INTEGRATION_TEST:
         required: true
         type: string
@@ -132,6 +135,14 @@ jobs:
           ref: ${{ inputs.MODINO_AGENT_VERSION }}
           token: ${{ secrets.GIT_TOKEN }}
 
+      - name: Checkout Modino-io/modino-back-end repository
+        uses: actions/checkout@v2
+        with:
+          repository: Modino-io/ modino-back-end
+          path:  modino-back-end
+          ref: ${{ inputs.MODINO_BACK_END }}
+          token: ${{ secrets.GIT_TOKEN }}
+
       - name: Setup directories
         run: |
           ./modino-devops/e2e-test/prepareTestDirectories.sh
@@ -184,6 +195,9 @@ jobs:
           echo ---Containers up---
           docker ps
         env:
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+          GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+          GITLAB_PACKAGES_TOKEN: ${{ secrets.GITLAB_PACKAGES_TOKEN }}
           DOCKER_BACKEND_VERSION: ${{ inputs.DOCKER_BACKEND_VERSION }}
           DOCKER_BUILDER_BACKEND_VERSION: ${{ inputs.DOCKER_BUILDER_BACKEND_VERSION }}
           DOCKER_BUILDER_SCRIPT_VERSION: ${{ inputs.DOCKER_BUILDER_SCRIPT_VERSION }}

@@ -138,8 +138,8 @@ jobs:
       - name: Checkout Modino-io/modino-back-end repository
         uses: actions/checkout@v2
         with:
-          repository: Modino-io/ modino-back-end
-          path:  modino-back-end
+          repository: Modino-io/modino-back-end
+          path: modino-back-end
           ref: ${{ inputs.MODINO_BACK_END }}
           token: ${{ secrets.GIT_TOKEN }}
 

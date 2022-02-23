@@ -228,6 +228,7 @@ jobs:
           MQTT_PORT: ${{ secrets.MQTT_PORT }}
           MQTT_LOCAL_URL: ${{ secrets.MQTT_LOCAL_URL }}
           BACKEND_VERSION: ${{ secrets.BACKEND_VERSION }}
+          ARCHITECTURE: ${{ inputs.ARCHITECTURE }}
 
       - name: wait fot it
         run: |

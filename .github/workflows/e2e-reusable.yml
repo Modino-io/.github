@@ -36,6 +36,9 @@ on:
       ARCHITECTURE:
         required: true
         type: string
+      MODINO_BUILDER_BACKEND:
+        required: true
+        type: string
     secrets:
       GIT_USERNAME: #OK
         required: true
@@ -144,6 +147,14 @@ jobs:
           repository: Modino-io/modino-back-end
           path: modino-back-end
           ref: ${{ inputs.MODINO_BACK_END }}
+          token: ${{ secrets.GIT_TOKEN }}
+
+      - name: Checkout Modino-io/modino-builder-backend repository
+        uses: actions/checkout@v2
+        with:
+          repository: Modino-io/modino-builder-backend
+          path: modino-builder-backend
+          ref: ${{ inputs.MODINO_BUILDER_BACKEND}}
           token: ${{ secrets.GIT_TOKEN }}
 
       - name: Setup directories

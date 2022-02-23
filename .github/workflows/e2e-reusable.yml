@@ -245,6 +245,7 @@ jobs:
         run: |
           ./modino-devops/e2e-test/wait-for-it.sh localhost:8080 -- echo "backend up"
           ./modino-devops/e2e-test/wait-for-it.sh localhost:8085 -- echo "builder up"
+          sleep 200
           
       - uses: actions/setup-java@v2
         with:
@@ -262,7 +263,10 @@ jobs:
           ./gradlew clean build integrationTest --info
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
           SPRING_MONGO_URI: ${{ secrets.TEST_MONGO_URI }}
+          TEST_SPRING_MONGO_URI: ${{ secrets.TEST_MONGO_URI }}
           BACKEND_DATABASE_NAME: ${{ secrets.TEST_BACKEND_DATABASE_NAME }}
           ENDPOINT: ${{ secrets.TEST_ENDPOINT }}
           COS_LOCATION: ${{ secrets.TEST_BUCKET_LOCATION }}
@@ -270,9 +274,8 @@ jobs:
           COS_HMAC_SECRET_ACCESS_KEY_ID: ${{ secrets.TEST_COS_HMAC_SECRET_ACCESS_KEY_ID }}
           BUCKET_NAME: ${{ secrets.TEST_BUCKET_NAME }}
           BUILDER_BACKEND_URL: ${{ secrets.TEST_BUILDER_BACKEND_URL }}
+          TEST_BUILDER_BACKEND_URL: ${{ secrets.TEST_BUILDER_BACKEND_URL }}
           TEST_PROJECT_TOPIC: ${{ secrets.TEST_MQTT_TOPIC }}
-          GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
-          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
           GITLAB_PACKAGES_TOKEN: ${{ secrets.GITLAB_PACKAGES_TOKEN }}
           APIKEY: ${{ secrets.TEST_APIKEY }}
           SERVICE_CRN: ${{ secrets.SERVICE_CRN }}

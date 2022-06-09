@@ -90,9 +90,9 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v3
         with:
-          context: ./${{ inputs.CALLER_REPOSITORY }}/
+          context: ./${{ inputs.CALLER_REPOSITORY }}
           platforms: linux/amd64
-          file: Dockerfile_online
+          file: ./${{ inputs.CALLER_REPOSITORY }}/Dockerfile_online
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

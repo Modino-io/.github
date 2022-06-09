@@ -1,32 +1,33 @@
 name: CI docker container
 
-workflow_call:
-    inputs:
-      CALLER_REPOSITORY:
-        required: true
-        type: string
-      CALLER_REPOSITORY_VERSION:
-        required: true
-        type: string
-      MODINO_DEVOPS_VERSION:
-        required: true
-        type: string
-      REGISTRY:
-        required: true
-        type: string
-    secrets:
-      GIT_USERNAME:
-        required: true
-      GIT_TOKEN:
-        required: true
-      GITLAB_PACKAGES_TOKEN:
-        required: true
-      REGISTRY_LOGIN:
-        required: true
-      REGISTRY_PASSWORD:
-        required: true
-      GITLAB_TOKEN:
-        required: true
+on:
+  workflow_call:
+      inputs:
+        CALLER_REPOSITORY:
+          required: true
+          type: string
+        CALLER_REPOSITORY_VERSION:
+          required: true
+          type: string
+        MODINO_DEVOPS_VERSION:
+          required: true
+          type: string
+        REGISTRY:
+          required: true
+          type: string
+      secrets:
+        GIT_USERNAME:
+          required: true
+        GIT_TOKEN:
+          required: true
+        GITLAB_PACKAGES_TOKEN:
+          required: true
+        REGISTRY_LOGIN:
+          required: true
+        REGISTRY_PASSWORD:
+          required: true
+        GITLAB_TOKEN:
+          required: true
 
 jobs:
   publish-packages:

@@ -95,7 +95,7 @@ jobs:
           context: ./${{ inputs.CALLER_REPOSITORY }}/
           builder: ${{ steps.buildx.outputs.name }}
           platforms: linux/amd64
-          file: Dockerfile_online
+          file: ./${{ inputs.CALLER_REPOSITORY }}/Dockerfile_online
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

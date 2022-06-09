@@ -25,6 +25,8 @@ workflow_call:
         required: true
       REGISTRY_PASSWORD:
         required: true
+      GITLAB_TOKEN:
+        required: true
 
 jobs:
   publish-packages:

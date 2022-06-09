@@ -47,7 +47,7 @@ jobs:
       - name: Checkout caller repository
         uses: actions/checkout@v2
         with:
-          repository: Modino-io/${{ inputs.CALLER_REPOSITORY }}
+          repository: ${{ inputs.CALLER_REPOSITORY }}
           path: ${{ inputs.CALLER_REPOSITORY }}
           ref: ${{ inputs.CALLER_REPOSITORY_VERSION }}
           token: ${{ secrets.GIT_TOKEN }}

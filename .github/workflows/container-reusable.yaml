@@ -90,12 +90,12 @@ jobs:
 
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
-          context: ./${{ inputs.CALLER_REPOSITORY }}
+          context: ./${{ inputs.CALLER_REPOSITORY }}/
           builder: ${{ steps.buildx.outputs.name }}
           platforms: linux/amd64
-          file: ./Dockerfile_online
+          file: Dockerfile_online
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

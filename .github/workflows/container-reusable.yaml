@@ -82,9 +82,8 @@ jobs:
           images: |
             ${{ inputs.REGISTRY }}/modino/modino/${{ inputs.CALLER_REPOSITORY }}
           tags: |
-            type=raw,priority=800,value={{branch}}-${{ github.run_id }}
             type=sha,priority=900,prefix={{branch}}-
-            type=semver,priority=1000,pattern={{version}},prefix=main-,
+            type=semver,priority=1000,pattern={{version}},prefix=main-
 
       - name: Build and push
         id: docker_build

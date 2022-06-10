@@ -103,3 +103,4 @@ jobs:
             GITLAB_PACKAGES_TOKEN=${{ secrets.GITLAB_PACKAGES_TOKEN }}
             GITHUB_USERNAME=${{ secrets.GIT_USERNAME }}
             GITHUB_TOKEN=${{ secrets.GIT_TOKEN }}
+            GITHUB_PACKAGES_TOKEN=${{ secrets.GIT_TOKEN }}

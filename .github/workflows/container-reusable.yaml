@@ -15,6 +15,9 @@ on:
         REGISTRY:
           required: true
           type: string
+        DOCKERFILE:
+          required: true
+          type: string
       secrets:
         GIT_USERNAME:
           required: true
@@ -91,7 +94,7 @@ jobs:
         with:
           context: ./${{ inputs.CALLER_REPOSITORY }}
           platforms: linux/amd64
-          file: ./${{ inputs.CALLER_REPOSITORY }}/Dockerfile_online
+          file: ./${{ inputs.CALLER_REPOSITORY }}/${{ inputs.DOCKERFILE }}
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}

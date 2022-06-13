@@ -12,9 +12,6 @@ assignees: ''
 ## Initiative / goal
 <!-- Describe how this Epic impacts an initiative the business is working on. -->
 
-### Hypothesis
-<!-- What is your hypothesis on the success of this Epic? Describe how success will be measured and what leading indicators the team will have to know if success has been hit. -->
-
 ## Acceptance criteria and must have scope
 <!-- Define what is a must-have for launch and in-scope. Keep this section fluid and dynamic until you lock-in priority during planning. -->
 

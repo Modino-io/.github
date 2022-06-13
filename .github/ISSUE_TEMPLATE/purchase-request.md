@@ -21,7 +21,7 @@ assignees: ''
 <!--- How are we coping with satisfying the need now? Is it an "upgrade" to existing service/hardware/etc. or a new thing -->
 
 ## How will the purchase impact our work environment?
-<!--- Describe what are the benefits that will be experienced after this purcahse is made -->
+<!--- Describe what are the benefits that will be experienced after this purchase is made -->
 
 ## Other information
 <!--- E.g. detailed explanation, related ADRs, external references, related issues, etc. -->

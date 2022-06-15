@@ -93,7 +93,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./${{ inputs.CALLER_REPOSITORY }}
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           file: ./${{ inputs.CALLER_REPOSITORY }}/${{ inputs.DOCKERFILE }}
           builder: ${{ steps.buildx.outputs.name }}
           push: true

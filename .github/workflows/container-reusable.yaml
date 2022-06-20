@@ -18,6 +18,9 @@ on:
         DOCKERFILE:
           required: true
           type: string
+        PLATFORMS:
+          required: true
+          type: string
       secrets:
         GIT_USERNAME:
           required: true
@@ -93,7 +96,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./${{ inputs.CALLER_REPOSITORY }}
-          platforms: linux/amd64,linux/arm64
+          platforms: ${{ inputs.PLATFORMS }}
           file: ./${{ inputs.CALLER_REPOSITORY }}/${{ inputs.DOCKERFILE }}
           builder: ${{ steps.buildx.outputs.name }}
           push: true

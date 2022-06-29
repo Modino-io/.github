@@ -88,7 +88,7 @@ jobs:
           images: |
             ${{ inputs.REGISTRY }}/modino/modino/${{ inputs.CALLER_REPOSITORY }}
           tags: |
-            type=sha,priority=900,prefix=build-{{branch}}-
+            type=sha,priority=900,prefix=build-{{branch}}-${{ github.run_id }}-
             type=semver,priority=1000,pattern={{version}},prefix=main-
 
       - name: Build and push

@@ -34,12 +34,15 @@ on:
           required: true
         GITLAB_TOKEN:
           required: true
+        GITLAB_URL:
+          required: true
+        GITLAB_REPOSITORY:
+          required: true
 
 jobs:
-  publish-packages:
+  publish-images:
     runs-on: ubuntu-20.04
     permissions:
-      contents: write
       packages: write
     steps:
       - name: Checkout Modino-io/modino-devops repository
@@ -64,8 +67,10 @@ jobs:
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
           CALLER_REPOSITORY: ${{ inputs.CALLER_REPOSITORY }}
+          GITLAB_URL: ${{ secrets.GITLAB_URL }}
+          GITLAB_REPOSITORY: ${{ secrets.GITLAB_REPOSITORY }}
 
-      - name: Login to Docker Hub
+      - name: Login to Docker Registry
         uses: docker/login-action@v2
         with:
           registry: ${{ inputs.REGISTRY }}

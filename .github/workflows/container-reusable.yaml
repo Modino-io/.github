@@ -9,9 +9,6 @@ on:
         CALLER_REPOSITORY_VERSION:
           required: true
           type: string
-        MODINO_DEVOPS_VERSION:
-          required: true
-          type: string
         REGISTRY:
           required: true
           type: string
@@ -50,7 +47,6 @@ jobs:
         with:
           repository: Modino-io/modino-devops
           path: modino-devops
-          ref: ${{ inputs.MODINO_DEVOPS_VERSION }}
           token: ${{ secrets.GIT_TOKEN }}
 
       - name: Checkout caller repository

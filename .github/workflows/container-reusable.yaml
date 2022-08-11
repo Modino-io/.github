@@ -84,13 +84,10 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          flavor: |
-            latest=auto
           images: |
             ${{ inputs.REGISTRY }}/modino/modino/${{ inputs.CALLER_REPOSITORY }}
           tags: |
-            type=sha,priority=900,prefix=build-{{branch}}-${{ github.run_id }}-
-            type=semver,priority=1000,pattern={{version}},prefix=main-
+            type=sha,priority=900,prefix=build-${{ github.run_id }}-
 
       - name: Build and push
         id: docker_build

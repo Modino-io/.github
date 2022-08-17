@@ -47,13 +47,14 @@ jobs:
         with:
           repository: Modino-io/modino-devops
           path: modino-devops
+          ref: fix/197-docker-images
           token: ${{ secrets.GIT_TOKEN }}
 
       - name: Checkout caller repository
         uses: actions/checkout@v2
         with:
           repository: ${{ inputs.CALLER_REPOSITORY }}
-          path: ${{ inputs.CALLER_REPOSITORY }}
+#          path: ${{ inputs.CALLER_REPOSITORY }}
           ref: ${{ inputs.CALLER_REPOSITORY_VERSION }}
           token: ${{ secrets.GIT_TOKEN }}
 
@@ -93,9 +94,9 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v3
         with:
-          context: ./${{ inputs.CALLER_REPOSITORY }}
+          context: ./
           platforms: ${{ inputs.PLATFORMS }}
-          file: ./${{ inputs.CALLER_REPOSITORY }}/${{ inputs.DOCKERFILE }}
+          file: ./${{ inputs.DOCKERFILE }}
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}

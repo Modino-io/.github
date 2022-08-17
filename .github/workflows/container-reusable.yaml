@@ -42,20 +42,20 @@ jobs:
     permissions:
       packages: write
     steps:
-      - name: Checkout Modino-io/modino-devops repository
-        uses: actions/checkout@v2
-        with:
-          repository: Modino-io/modino-devops
-          path: modino-devops
-          ref: fix/197-docker-images
-          token: ${{ secrets.GIT_TOKEN }}
-
       - name: Checkout caller repository
         uses: actions/checkout@v2
         with:
           repository: ${{ inputs.CALLER_REPOSITORY }}
 #          path: ${{ inputs.CALLER_REPOSITORY }}
           ref: ${{ inputs.CALLER_REPOSITORY_VERSION }}
+          token: ${{ secrets.GIT_TOKEN }}
+
+      - name: Checkout Modino-io/modino-devops repository
+        uses: actions/checkout@v2
+        with:
+          repository: Modino-io/modino-devops
+          path: modino-devops
+          ref: fix/197-docker-images
           token: ${{ secrets.GIT_TOKEN }}
 
       - name: Prepare Certs

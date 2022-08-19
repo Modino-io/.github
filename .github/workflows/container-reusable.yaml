@@ -42,6 +42,13 @@ jobs:
     permissions:
       packages: write
     steps:
+      - name: Checkout caller repository
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ inputs.CALLER_REPOSITORY }}
+          ref: ${{ inputs.CALLER_REPOSITORY_VERSION }}
+          token: ${{ secrets.GIT_TOKEN }}
+
       - name: Checkout Modino-io/modino-devops repository
         uses: actions/checkout@v2
         with:
@@ -49,20 +56,11 @@ jobs:
           path: modino-devops
           token: ${{ secrets.GIT_TOKEN }}
 
-      - name: Checkout caller repository
-        uses: actions/checkout@v2
-        with:
-          repository: ${{ inputs.CALLER_REPOSITORY }}
-          path: ${{ inputs.CALLER_REPOSITORY }}
-          ref: ${{ inputs.CALLER_REPOSITORY_VERSION }}
-          token: ${{ secrets.GIT_TOKEN }}
-
       - name: Prepare Certs
         run: |
           ./modino-devops/docker-image-script/getCerts.sh
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
-          CALLER_REPOSITORY: ${{ inputs.CALLER_REPOSITORY }}
           GITLAB_URL: ${{ secrets.GITLAB_URL }}
           GITLAB_REPOSITORY: ${{ secrets.GITLAB_REPOSITORY }}
 
@@ -93,9 +91,9 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v3
         with:
-          context: ./${{ inputs.CALLER_REPOSITORY }}
+          context: ./
           platforms: ${{ inputs.PLATFORMS }}
-          file: ./${{ inputs.CALLER_REPOSITORY }}/${{ inputs.DOCKERFILE }}
+          file: ./${{ inputs.DOCKERFILE }}
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}

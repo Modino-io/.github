@@ -54,7 +54,6 @@ jobs:
         with:
           repository: Modino-io/modino-devops
           path: modino-devops
-          ref: fix/197-docker-images
           token: ${{ secrets.GIT_TOKEN }}
 
       - name: Prepare Certs

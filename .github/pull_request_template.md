@@ -1,48 +1,36 @@
-<!--- Provide a general summary of your changes in the Title above -->
-## Overview
-  * Status: 
-    - [ ] ✅ Ready for review
-    - [ ] ⚠️ Hold
-    - [ ] 🚧 WIP
-    
-  * Type: 
-    - [ ] 🛠 Build
-    - [ ] 👷‍ CI
-    - [ ] 📚 Docs
-    - [ ] ✨ Feat
-    - [ ] 🐛 Fix
-    - [ ] 🚀 Perf
-    - [ ] 📦 Refactor
-    - [ ] 💎 Style    
-    - [ ] 🧪 Test
+### Status
+- [ ] Ready for review
+(If not, write either WIP or blocked)
 
-    <!-- Please check boxes accordingly, and remove the others to avoid creating "tasks" -->
+### Summary
+<!--- Describe your changes -->
 
-## Description
-<!--- Describe your changes in detail -->
-
-## Motivation and Context
-<!--- Why is this change required? What problem does it solve? -->
-<!--- If it fixes an open issue, please link to the issue here. -->
-
-## How Has This Been Tested?
-<!--- Please describe in detail how you tested your changes. -->
-<!--- Include details of your testing environment, tests ran to see how -->
-<!--- your change affects other areas of the code, etc. -->
-
-## Related Issues
+### Motivation - All related issues
+- [ ] I have linked all related issues
+#### Issues: 
 <!--- Every pull requests should have a related open issue or issues -->
-<!--- If suggesting a new feature or change, please discuss it in an issue first -->
-<!--- If fixing a bug, there should be an issue describing it with steps to reproduce -->
-<!--- Please link to the issue here: -->
+<!-- Use the "Closes" keyword if related issue can be closed (make sure all acceptance criteria were met before you do so) -->
 
-## Screenshots (if appropriate):
-<!--- Screenshots or GIF screen cast can vastly help understanding what's going on. -->
+#### Epic (optional):
+<!-- If this PR fixes issues that are part of an epic, link this epic here -->
+
+### Blocked by PRs (optional)
+<!-- If changes from this pull request should only be merged together with changes from different pull requests, link them here -->
+
+### Validation
+- [ ] I have made sure no other tests have to be added or updated before this pull request is merged / created a new issue aimed to update them (link the issue if needed)
+
+<!-- Describe in detail how your changes were tested -->
+
+### Screenshots (if appropriate)
 <!--- A picture is worth a 1000 words. -->
 
-## Checklist:
-<!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
-<!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
-- [ ] My change requires a change to the documentation (for example ADRs/README).
-- [ ] I have updated the documentation accordingly.
-- [ ] I have added/updated tests to cover my changes.
+### Checklist
+
+- [ ] I have self-reviewed my changes
+- [ ] I have made sure all BREAKING CHANGEs were marked accordingly (see [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) and [semantic-release](https://github.com/semantic-release/semantic-release))
+- [ ] I have made sure documentation is up to date or created a new issue aimed to update it (link the issue if needed)
+- [ ] I have made sure that my changes do not require (or break) configuration of other services, e.g. Kubernetes/Docker-compose or created a new issue aimed at addressing this task
+- [ ] No other pull requests have to be merged / issues have to be solved before this one
+
+### Other information (optional)

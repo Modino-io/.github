@@ -40,6 +40,9 @@ Example:
 ### Other information (optional)
 <!--- Anything else we should know about the issue? -->
 
+---
+---
+
 # Definition of done
 ### Solution Quality
 - [ ] Provided design answers to all Acceptance Criteria described in the related issue

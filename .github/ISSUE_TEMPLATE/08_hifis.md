@@ -39,6 +39,9 @@ Example:
 ### Other information (optional)
 <!--- Anything else we should know about the issue? -->
 
+---
+---
+
 # Definition of done
 ### Solution Quality
 - [ ] Progress documented in this issue each day you worked on this story
@@ -63,6 +66,9 @@ Example:
 - [ ] If needed, information flows were visualized in Figma
 - [ ] Figma prototype was connected with the corresponding front-end issue
 - [ ] Issue was moved to correct place on board, "who: design" label has been removed
+
+---
+---
 
 # Solution
 ### Summary

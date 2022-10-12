@@ -32,7 +32,7 @@ Example:
 - (Other-describe)[link]
 -->
 
-### Description and expected bahaviour
+### Description and expected behaviour
 <!-- Will proposed solution affect the users? -->
 <!-- Confirm the behaviour with Design team -->
 

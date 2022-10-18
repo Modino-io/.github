@@ -1,7 +1,7 @@
 ---
-name: '08. HiFis'
+name: '08. Hi-Fis'
 about: Turn Wireframes into High fidelity designs
-title: "[HIFIS] Title"
+title: "[HI-FI] Title"
 labels: 'type: ui :art:, who: design'
 assignees: hadashi-h
 
@@ -16,21 +16,22 @@ As [Andrew/Max] ...
 it is required to fill those fields, if there is any connected issue or resource. 
 This would help in future reference of connected issues and finding out decisions. -->
 #### Issues
-<!--- Various connected issues necessary to understand the issue presented 
-Example:
-- Epic (epic name)[link]
-- Wireframes (issue name)[link]
-- HiFis (issue name)[link]
-- Research (issue name)[link]
-- Other (issue name)[link]
+<!-- Various connected issues necessary to understand the issue presented. Example: -->
+<!-- 
+- Epic(s): [epic name](link) or #epic_no
+- Wireframes: [issue name](link) or #issue_no
+- Hi-Fis: [issue name](link) or #issue_no
+- Research: [issue name](link) or #issue_no
+- Other: [issue name](link) or #issue_no
 -->
 
 #### Links
-<!--- Various resources necessary to understand the issue presented Example:
-- (Figma)[link]
-- (Mural)[link]
-- (Slack)[link]
-- (Other-describe)[link]
+<!--- Various resources necessary to understand the issue presented. Example: -->
+<!-- 
+- [Figma](link)
+- [Mural](link)
+- [Slack](link)
+- [Other-describe](link) 
 -->
 
 ### Acceptance criteria

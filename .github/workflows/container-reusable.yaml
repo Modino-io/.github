@@ -43,14 +43,14 @@ jobs:
       packages: write
     steps:
       - name: Checkout caller repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: ${{ inputs.CALLER_REPOSITORY }}
           ref: ${{ inputs.CALLER_REPOSITORY_VERSION }}
           token: ${{ secrets.GIT_TOKEN }}
 
       - name: Checkout Modino-io/modino-devops repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: Modino-io/modino-devops
           path: modino-devops

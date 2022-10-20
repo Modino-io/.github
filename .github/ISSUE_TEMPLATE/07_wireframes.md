@@ -38,7 +38,7 @@ This would help in future reference of connected issues and finding out decision
 -->
 
 ### Acceptance criteria
-- [ ] User flows with wireframes or HiFis created that cover…
+- [ ] User flows with wireframes created that cover…
 [LIST defined upon creation]
 
 ### Other information (_optional_)

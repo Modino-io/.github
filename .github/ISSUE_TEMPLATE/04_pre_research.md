@@ -39,8 +39,8 @@ This would help in future reference of connected issues and finding out decision
 
 ### Acceptance criteria
 - [ ] Collect contextual information/questions from internal stakeholders
-- [ ] Prioritize research questions in a single file
 - [ ] Define research questions, objectives, and hypotheses based on findings from the pre-research huddle
+- [ ] Prioritize research questions in a single file
 - [ ] Define the study design (target audience, recruitment source, research methods)
 - [ ] Create participant list (if applicable: don't forget to invite developers!)
 - [ ] Create a draft test procedure

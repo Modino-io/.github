@@ -84,9 +84,8 @@ This would help in future reference of connected issues and finding out decision
 -->
 - Prototypes: [Figma](link)
 
-### Screenshots (if appropriate)
+### Screenshots
 <!--- A picture is worth a 1000 words. -->
-
 #### Before
 
 #### After

@@ -91,9 +91,5 @@ This would help in future reference of connected issues and finding out decision
 
 #### After
 
-### Related links
-<!--- Various resources necessary to understand provided solution -->
-<!--- Figma, mural, slack, etc -->
-
 ### Other information (optional)
 <!--- Anything else we should know about the solution? -->

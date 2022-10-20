@@ -11,7 +11,7 @@ assignees: hadashi-h
 ### User Story
 As [Andrew/Max] ...
 
-### Related (optional)
+### Related (_optional_)
 <!--- Although this section is described as optional, because some issues are standalone, 
 it is required to fill those fields, if there is any connected issue or resource. 
 This would help in future reference of connected issues and finding out decisions. -->
@@ -39,7 +39,7 @@ This would help in future reference of connected issues and finding out decision
 - [ ] User flows with wireframes or HiFis created that cover…
 [LIST defined upon creation]
 
-### Other information (optional)
+### Other information (_optional_)
 <!--- Anything else we should know about the issue? -->
 
 ---
@@ -91,5 +91,5 @@ This would help in future reference of connected issues and finding out decision
 
 #### After
 
-### Other information (optional)
+### Other information (_optional_)
 <!--- Anything else we should know about the solution? -->

@@ -10,7 +10,7 @@ assignees: Klarys
 # Issue presentation
 ### Objective / Goal
 
-### Related (optional)
+### Related (_optional_)
 <!--- Although this section is described as optional, because some issues are standalone, 
 it is required to fill those fields, if there is any connected issue or resource. 
 This would help in future reference of connected issues and finding out decisions. -->
@@ -39,22 +39,22 @@ This would help in future reference of connected issues and finding out decision
 ### Screenshots (if appropriate)
 <!--- A picture is worth a 1000 words. -->
 
-### Platform (optional)
+### Platform (_optional_)
 
-### Severity notes (optional)
+### Severity notes (_optional_)
 <!-- Does it break a functionality? -->
 <!-- How often does it happen? -->
 
-### Other information (optional)
+### Other information (_optional_)
 <!--- Anything else we should know about the issue? -->
 
 ---
 ---
 
 # Possible solution
-### Expected bahaviour (optional)
+### Expected bahaviour (_optional_)
 <!-- Will proposed solution affect the users? -->
 <!-- Confirm the behaviour with Design team -->
 
-### Screenshots (if appropriate)
+### Screenshots (_optional_)
 <!--- A picture is worth a 1000 words. -->

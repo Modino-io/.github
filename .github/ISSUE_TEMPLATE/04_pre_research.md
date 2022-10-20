@@ -12,7 +12,7 @@ assignees: hadashi-h
 Identify the research problem and its context: the research scope of this epic. 
 Create a plan for how to address the research problem and the procedure/artifacts needed to conduct the research.
 
-### Related (optional)
+### Related (_optional_)
 <!--- Although this section is described as optional, because some issues are standalone, 
 it is required to fill those fields, if there is any connected issue or resource. 
 This would help in future reference of connected issues and finding out decisions. -->
@@ -51,7 +51,7 @@ This would help in future reference of connected issues and finding out decision
     - [ ] Have 2-3 team members click through the prototype to eliminate issues and inconsistencies
 - [ ] Optional: pilot test
 
-### Other information (optional)
+### Other information (_optional_)
 <!--- Anything else we should know about the issue? -->
 
 ---
@@ -72,5 +72,5 @@ This would help in future reference of connected issues and finding out decision
 -->
 - Notes: [Google Drive](link)
 
-### Other information (optional)
+### Other information (_optional_)
 <!--- Anything else we should know about the solution? -->

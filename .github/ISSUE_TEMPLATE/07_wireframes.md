@@ -47,15 +47,13 @@ This would help in future reference of connected issues and finding out decision
 
 # Definition of done
 ### Solution Quality
-- [ ] Provided design answers to all Acceptance Criteria described in the related issue
 - [ ] Provided design includes:
    - [ ] Primary flow ("happy path")
    - [ ] Secondary flows (e.g. unexpected input, something fails,…)
-   - [ ] Behaviour specs included for every wireframe (screen-to-screen interactions, general behaviour, inputs, …)
+   - [ ] Behaviour specs included for every wireframe (screen-to-screen interactions, general behaviour, inputs…)
 - [ ] Provided design follows the style and requirements set by [Material](https://material.io/)
 - [ ] Provided design follows the style and requirements set by [Modino](figma link)
-- [ ] 0 errors found by Figma checkers (if cannot be achieved, explain why or create a follow up issue)
-- [ ] Wireframe interactions are included in the prototype
+- [ ] Interactions are included in the prototype
 
 ### Common Agreement
 - [ ] Development team confirmed that there are no technical limitations or restrictions
@@ -65,9 +63,8 @@ This would help in future reference of connected issues and finding out decision
 
 ### Documentation
 - [ ] Progress was documented each day you worked on this story; document design decisions and agreements
-- [ ] If needed, information flows were visualized in Figma
-- [ ] Figma prototype was connected with the corresponding front-end issue
-- [ ] Issue was moved to correct place on board, "who: design" label has been removed
+- [ ] Follow-up HI-FI issue has been created and is referencing these wireframes
+- [ ] FEDs or BEDs crossreference their issue to this one
 
 ---
 ---

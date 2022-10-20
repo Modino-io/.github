@@ -25,6 +25,7 @@ This would help in future reference of connected issues and finding out decision
 - Research: [issue name](link) or #issue_no
 - Other: [issue name](link) or #issue_no
 -->
+- Epic(s): [epic name](link) or #epic_no
 
 #### Links
 <!--- Various resources necessary to understand the issue presented. Example: -->

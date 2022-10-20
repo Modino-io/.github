@@ -58,6 +58,8 @@ This would help in future reference of connected issues and finding out decision
 - Pictures: [Google Drive](link)
 - Other: [Google Drive](link)
 -->
+- Recordings: [Google Drive](link)
+- Notes: [Google Drive](link)
 
 ### Other information (optional)
 <!--- Anything else we should know about the solution? -->

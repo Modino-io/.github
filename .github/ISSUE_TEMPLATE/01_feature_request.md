@@ -27,10 +27,11 @@ This would help in future reference of connected issues and finding out decision
 #### Links
 <!--- Various resources necessary to understand the issue presented. Example: -->
 <!-- 
-- [Figma](link)
-- [Mural](link)
-- [Slack](link)
-- [Other-describe](link) 
+- Prototypes: [Figma](link)
+- Recordings: [Google Drive](link)
+- Notes: [Google Drive](link)
+- Pictures: [Google Drive](link)
+- Other: [Google Drive](link)
 -->
 
 ### Description and expected behaviour

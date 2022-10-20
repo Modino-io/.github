@@ -29,10 +29,11 @@ This would help in future reference of connected issues and finding out decision
 #### Links
 <!--- Various resources necessary to understand the issue presented. Example: -->
 <!-- 
-- [Figma](link)
-- [Mural](link)
-- [Slack](link)
-- [Other-describe](link) 
+- Prototypes: [Figma](link)
+- Recordings: [Google Drive](link)
+- Notes: [Google Drive](link)
+- Pictures: [Google Drive](link)
+- Other: [Google Drive](link)
 -->
 
 ### Acceptance criteria
@@ -53,13 +54,15 @@ This would help in future reference of connected issues and finding out decision
 ### Summary
 <!--- Summarized research, major outtakes -->
 
-### Closing artifacts (optional)
+### Closing artifacts (_optional_)
+<!--- Various resources necessary to understand the solution provided. Example: -->
 <!-- 
-- audio (Google Drive)[link]
-- notes (Google Drive)[link]
-- pictures (Google Drive)[link]
-- prototypes (Figma)[link]
-etc. -->
+- Prototypes: [Figma](link)
+- Recordings: [Google Drive](link)
+- Notes: [Google Drive](link)
+- Pictures: [Google Drive](link)
+- Other: [Google Drive](link)
+-->
 
 ### Other information (optional)
 <!--- Anything else we should know about the solution? -->

@@ -28,10 +28,11 @@ This would help in future reference of connected issues and finding out decision
 #### Links
 <!--- Various resources necessary to understand the issue presented. Example: -->
 <!-- 
-- [Figma](link)
-- [Mural](link)
-- [Slack](link)
-- [Other-describe](link) 
+- Prototypes: [Figma](link)
+- Recordings: [Google Drive](link)
+- Notes: [Google Drive](link)
+- Pictures: [Google Drive](link)
+- Other: [Google Drive](link)
 -->
 
 ### Acceptance criteria
@@ -76,10 +77,14 @@ This would help in future reference of connected issues and finding out decision
 <!--- Summarized research, major outtakes -->
 
 ### Closing artifacts
-- audio (Google Drive)[link]
-- notes (Google Drive)[link]
-- pictures (Google Drive)[link]
-- prototypes (Figma)[link]
+<!--- Various resources necessary to understand the solution provided. Example: -->
+<!-- 
+- Prototypes: [Figma](link)
+- Recordings: [Google Drive](link)
+- Notes: [Google Drive](link)
+- Pictures: [Google Drive](link)
+- Other: [Google Drive](link)
+-->
 
 ### Screenshots (if appropriate)
 <!--- A picture is worth a 1000 words. -->

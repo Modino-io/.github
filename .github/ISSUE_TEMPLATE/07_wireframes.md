@@ -86,9 +86,11 @@ This would help in future reference of connected issues and finding out decision
 
 ### Screenshots
 <!--- A picture is worth a 1000 words. -->
+<!--- 
 #### Before
 
 #### After
+-->
 
 ### Other information (_optional_)
 <!--- Anything else we should know about the solution? -->

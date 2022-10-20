@@ -37,7 +37,7 @@ This would help in future reference of connected issues and finding out decision
 -->
 
 ### Acceptance criteria
-- [ ] Answered problems and hypothesis from pre-research
+- [ ] [If existing] Problems and hypothesis from pre-research #000 answered
 - [ ] If needed, new issues created to solve the problem
 
 ### Other information (_optional_)

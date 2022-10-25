@@ -12,7 +12,7 @@ assignees: hadashi-h
 Collect data.
 <!--- Research problem, motivation filled from pre-research DoD -->
 
-### Related (optional)
+### Related (_optional_)
 <!--- Although this section is described as optional, because some issues are standalone, 
 it is required to fill those fields, if there is any connected issue or resource. 
 This would help in future reference of connected issues and finding out decisions. -->
@@ -25,14 +25,16 @@ This would help in future reference of connected issues and finding out decision
 - Research: [issue name](link) or #issue_no
 - Other: [issue name](link) or #issue_no
 -->
+- Epic(s): [epic name](link) or #epic_no
 
 #### Links
 <!--- Various resources necessary to understand the issue presented. Example: -->
 <!-- 
-- [Figma](link)
-- [Mural](link)
-- [Slack](link)
-- [Other-describe](link) 
+- Prototypes: [Figma](link)
+- Recordings: [Google Drive](link)
+- Notes: [Google Drive](link)
+- Pictures: [Google Drive](link)
+- Other: [Google Drive](link)
 -->
 
 ### Acceptance criteria
@@ -43,7 +45,7 @@ This would help in future reference of connected issues and finding out decision
 - [ ] Conduct session
 - [ ] Debrief with team members after session
 
-### Other information (optional)
+### Other information (_optional_)
 <!--- Anything else we should know about the issue? -->
 
 ---
@@ -54,10 +56,16 @@ This would help in future reference of connected issues and finding out decision
 <!--- Summarized research, major outtakes -->
 
 ### Closing artifacts
-- audio (Google Drive)[link]
-- notes (Google Drive)[link]
-- pictures (Google Drive)[link]
-- prototypes (Figma)[link]
+<!--- Various resources necessary to understand the solution provided. Example: -->
+<!-- 
+- Prototypes: [Figma](link)
+- Recordings: [Google Drive](link)
+- Notes: [Google Drive](link)
+- Pictures: [Google Drive](link)
+- Other: [Google Drive](link)
+-->
+- Recordings: [Google Drive](link)
+- Notes: [Google Drive](link)
 
-### Other information (optional)
+### Other information (_optional_)
 <!--- Anything else we should know about the solution? -->

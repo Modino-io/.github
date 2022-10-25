@@ -11,10 +11,10 @@
 <!--- Every pull requests should have a related open issue or issues -->
 <!-- Use the "Closes" keyword if related issue can be closed (make sure all acceptance criteria were met before you do so) -->
 
-#### Epic (optional):
+#### Epic (_optional_):
 <!-- If this PR fixes issues that are part of an epic, link this epic here -->
 
-### Blocked by PRs (optional)
+### Blocked by PRs (_optional_)
 <!-- If changes from this pull request should only be merged together with changes from different pull requests, link them here -->
 
 ### Validation
@@ -22,8 +22,13 @@
 
 <!-- Describe in detail how your changes were tested -->
 
-### Screenshots (if appropriate)
+### Screenshots (_optional_)
 <!--- A picture is worth a 1000 words. -->
+<!--- 
+#### Before
+
+#### After
+-->
 
 ### Checklist
 
@@ -33,4 +38,4 @@
 - [ ] I have made sure that my changes do not require (or break) configuration of other services, e.g. Kubernetes/Docker-compose or created a new issue aimed at addressing this task
 - [ ] No other pull requests have to be merged / issues have to be solved before this one
 
-### Other information (optional)
+### Other information (_optional_)

@@ -12,7 +12,7 @@ assignees: hadashi-h, Klarys
 
 ### Acceptance criteria
 
-### Related (optional)
+### Related (_optional_)
 <!--- Although this section is described as optional, because some issues are standalone, 
 it is required to fill those fields, if there is any connected issue or resource. 
 This would help in future reference of connected issues and finding out decisions. -->
@@ -29,11 +29,12 @@ This would help in future reference of connected issues and finding out decision
 #### Links
 <!--- Various resources necessary to understand the issue presented. Example: -->
 <!-- 
-- [Figma](link)
-- [Mural](link)
-- [Slack](link)
-- [Other-describe](link) 
+- Prototypes: [Figma](link)
+- Recordings: [Google Drive](link)
+- Notes: [Google Drive](link)
+- Pictures: [Google Drive](link)
+- Other: [Google Drive](link)
 -->
 
-### Other information (optional)
+### Other information (_optional_)
 <!--- Anything else we should know about the issue? -->

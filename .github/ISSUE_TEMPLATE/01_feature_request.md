@@ -10,7 +10,7 @@ assignees: Klarys
 # Issue presentation
 ### User story
 
-### Related (optional)
+### Related (_optional_)
 <!--- Although this section is described as optional, because some issues are standalone, 
 it is required to fill those fields, if there is any connected issue or resource. 
 This would help in future reference of connected issues and finding out decisions. -->
@@ -27,20 +27,21 @@ This would help in future reference of connected issues and finding out decision
 #### Links
 <!--- Various resources necessary to understand the issue presented. Example: -->
 <!-- 
-- [Figma](link)
-- [Mural](link)
-- [Slack](link)
-- [Other-describe](link) 
+- Prototypes: [Figma](link)
+- Recordings: [Google Drive](link)
+- Notes: [Google Drive](link)
+- Pictures: [Google Drive](link)
+- Other: [Google Drive](link)
 -->
 
 ### Description and expected behaviour
 <!-- Will proposed solution affect the users? -->
 <!-- Confirm the behaviour with Design team -->
 
-### Screenshots (if appropriate)
+### Screenshots (_optional_)
 <!--- A picture is worth a 1000 words. -->
 
 ### Acceptance criteria
 
-### Other information (optional)
+### Other information (_optional_)
 <!--- Anything else we should know about the issue? -->

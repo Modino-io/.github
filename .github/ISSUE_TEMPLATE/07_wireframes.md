@@ -11,7 +11,7 @@ assignees: hadashi-h
 ### User Story
 As [Andrew/Max] ...
 
-### Related (optional)
+### Related (_optional_)
 <!--- Although this section is described as optional, because some issues are standalone, 
 it is required to fill those fields, if there is any connected issue or resource. 
 This would help in future reference of connected issues and finding out decisions. -->
@@ -24,21 +24,24 @@ This would help in future reference of connected issues and finding out decision
 - Research: [issue name](link) or #issue_no
 - Other: [issue name](link) or #issue_no
 -->
+- Epic(s): [epic name](link) or #epic_no
+- Hi-Fis: [issue name](link) or #issue_no
 
 #### Links
 <!--- Various resources necessary to understand the issue presented. Example: -->
 <!-- 
-- [Figma](link)
-- [Mural](link)
-- [Slack](link)
-- [Other-describe](link) 
+- Prototypes: [Figma](link)
+- Recordings: [Google Drive](link)
+- Notes: [Google Drive](link)
+- Pictures: [Google Drive](link)
+- Other: [Google Drive](link)
 -->
 
 ### Acceptance criteria
-- [ ] User flows with wireframes or HiFis created that cover…
+- [ ] User flows with wireframes created that cover…
 [LIST defined upon creation]
 
-### Other information (optional)
+### Other information (_optional_)
 <!--- Anything else we should know about the issue? -->
 
 ---
@@ -46,15 +49,13 @@ This would help in future reference of connected issues and finding out decision
 
 # Definition of done
 ### Solution Quality
-- [ ] Provided design answers to all Acceptance Criteria described in the related issue
 - [ ] Provided design includes:
    - [ ] Primary flow ("happy path")
    - [ ] Secondary flows (e.g. unexpected input, something fails,…)
-   - [ ] Behaviour specs included for every wireframe (screen-to-screen interactions, general behaviour, inputs, …)
+   - [ ] Behaviour specs included for every wireframe (screen-to-screen interactions, general behaviour, inputs…)
 - [ ] Provided design follows the style and requirements set by [Material](https://material.io/)
 - [ ] Provided design follows the style and requirements set by [Modino](figma link)
-- [ ] 0 errors found by Figma checkers (if cannot be achieved, explain why or create a follow up issue)
-- [ ] Wireframe interactions are included in the prototype
+- [ ] Interactions are included in the prototype
 
 ### Common Agreement
 - [ ] Development team confirmed that there are no technical limitations or restrictions
@@ -64,9 +65,8 @@ This would help in future reference of connected issues and finding out decision
 
 ### Documentation
 - [ ] Progress was documented each day you worked on this story; document design decisions and agreements
-- [ ] If needed, information flows were visualized in Figma
-- [ ] Figma prototype was connected with the corresponding front-end issue
-- [ ] Issue was moved to correct place on board, "who: design" label has been removed
+- [ ] Follow-up HI-FI issue has been created and is referencing these wireframes
+- [ ] FEDs or BEDs crossreference their issue to this one
 
 ---
 ---
@@ -76,21 +76,23 @@ This would help in future reference of connected issues and finding out decision
 <!--- Summarized research, major outtakes -->
 
 ### Closing artifacts
-- audio (Google Drive)[link]
-- notes (Google Drive)[link]
-- pictures (Google Drive)[link]
-- prototypes (Figma)[link]
+<!--- Various resources necessary to understand the solution provided. Example: -->
+<!-- 
+- Prototypes: [Figma](link)
+- Recordings: [Google Drive](link)
+- Notes: [Google Drive](link)
+- Pictures: [Google Drive](link)
+- Other: [Google Drive](link)
+-->
+- Prototypes: [Figma](link)
 
-### Screenshots (if appropriate)
+### Screenshots
 <!--- A picture is worth a 1000 words. -->
-
+<!--- 
 #### Before
 
 #### After
+-->
 
-### Related links
-<!--- Various resources necessary to understand provided solution -->
-<!--- Figma, mural, slack, etc -->
-
-### Other information (optional)
+### Other information (_optional_)
 <!--- Anything else we should know about the solution? -->

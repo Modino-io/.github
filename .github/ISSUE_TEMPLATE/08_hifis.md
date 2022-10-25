@@ -81,6 +81,7 @@ This would help in future reference of connected issues and finding out decision
 - Pictures: [Google Drive](link)
 - Other: [Google Drive](link)
 -->
+- Prototypes: [Figma](link)
 
 ### Screenshots (if appropriate)
 <!--- A picture is worth a 1000 words. -->

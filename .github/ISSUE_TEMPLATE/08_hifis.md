@@ -46,16 +46,14 @@ This would help in future reference of connected issues and finding out decision
 
 # Definition of done
 ### Solution Quality
-- [ ] Progress documented in this issue each day you worked on this story
-- [ ] Figma link to working file documented in this issue
 - [ ] [If there's room for exploration] Create 2 – 3 variations of (exemplary) visual designs
-- [ ] Design Critiques held until the design team is happy
+- [ ] Provided design follows the style and requirements set by [Material](https://material.io/)
+- [ ] Provided design follows the style and requirements set by [Modino](figma link)
+- [ ] Interactions are included in the prototype
+
 - [ ] Hand-off (once screens are final)
   - [ ] If necessary, provide redlines in a separate frame with suffix "SPECS" (frame-name--SPECS)
   - [ ] Graphical assets made exportable through Figma
-  - [ ] Figma link shared (for FEDs and other non-paid seats)
-  - [ ] Respective FED(s) have been personally notified
-  - [ ] Ideally ask for their implementation user story to cross-link to this one
 
 ### Common Agreement
 - [ ] Development team confirmed that there are no technical limitations or restrictions
@@ -65,9 +63,7 @@ This would help in future reference of connected issues and finding out decision
 
 ### Documentation
 - [ ] Progress was documented each day you worked on this story; document design decisions and agreements
-- [ ] If needed, information flows were visualized in Figma
-- [ ] Figma prototype was connected with the corresponding front-end issue
-- [ ] Issue was moved to correct place on board, "who: design" label has been removed
+- [ ] FEDs crossreference their issue to this one
 
 ---
 ---

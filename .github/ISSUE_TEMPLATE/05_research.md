@@ -11,7 +11,7 @@ assignees: hadashi-h
 ### Objective / Goal / User Story
 Understand and enable work on:
 
-### Related (optional)
+### Related (_optional_)
 <!--- Although this section is described as optional, because some issues are standalone, 
 it is required to fill those fields, if there is any connected issue or resource. 
 This would help in future reference of connected issues and finding out decisions. -->
@@ -39,7 +39,7 @@ This would help in future reference of connected issues and finding out decision
 - [ ] Answered problems and hypothesis from pre-research
 - [ ] If needed, new issues created to solve the problem
 
-### Other information (optional)
+### Other information (_optional_)
 <!--- Anything else we should know about the issue? -->
 
 ---
@@ -61,5 +61,5 @@ This would help in future reference of connected issues and finding out decision
 - Recordings: [Google Drive](link)
 - Notes: [Google Drive](link)
 
-### Other information (optional)
+### Other information (_optional_)
 <!--- Anything else we should know about the solution? -->

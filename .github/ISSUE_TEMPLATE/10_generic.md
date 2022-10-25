@@ -12,7 +12,7 @@ assignees: hadashi-h, Klarys
 
 ### Acceptance criteria
 
-### Related (optional)
+### Related (_optional_)
 <!--- Although this section is described as optional, because some issues are standalone, 
 it is required to fill those fields, if there is any connected issue or resource. 
 This would help in future reference of connected issues and finding out decisions. -->
@@ -36,5 +36,5 @@ This would help in future reference of connected issues and finding out decision
 - Other: [Google Drive](link)
 -->
 
-### Other information (optional)
+### Other information (_optional_)
 <!--- Anything else we should know about the issue? -->

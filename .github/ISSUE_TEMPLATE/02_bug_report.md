@@ -36,7 +36,7 @@ This would help in future reference of connected issues and finding out decision
 
 ### Current behaviour
 
-### Screenshots (if appropriate)
+### Screenshots (_optional_)
 <!--- A picture is worth a 1000 words. -->
 
 ### Platform (_optional_)

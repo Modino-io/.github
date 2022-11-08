@@ -2,6 +2,8 @@ name: Determinate runner
 
 on:
   workflow_call:
+    outputs:
+      value: ${{ jobs.machine.outputs.machine }}
 
 jobs:
   machine:

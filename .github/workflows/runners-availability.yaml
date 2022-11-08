@@ -1,0 +1,29 @@
+name: Determinate runner
+
+on:
+  workflow_call:
+
+jobs:
+  machine:
+    runs-on: ubuntu-20.04
+    outputs:
+      machine: ${{ steps.machine.outputs.machine }}
+    steps:
+      - id: machine
+        name: Determanate runner
+        shell: bash
+        run: |
+          success=0
+          for x in $arr; do
+            response=$(curl --write-out '%{http_code}' --silent --output /dev/null "$x")
+            if [ $response = 200 ]; then
+              success=$((success+1))
+            fi
+          done
+          if [ $success > 0 ]; then
+            echo "machine=mac" >> $GITHUB_OUTPUT
+          fi
+          echo "machine=linux" >> $GITHUB_OUTPUT
+          exit 0
+        env:
+          webhook_servers: https://98.arm.runners.modino.dev/

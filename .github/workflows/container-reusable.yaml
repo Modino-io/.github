@@ -18,6 +18,9 @@ on:
         PLATFORMS:
           required: true
           type: string
+        RUNS_ON:
+          required: true
+          type: string
       secrets:
         GIT_USERNAME:
           required: true
@@ -38,7 +41,8 @@ on:
 
 jobs:
   publish-images:
-    runs-on: ubuntu-20.04
+    timeout-minutes: 30
+    runs-on: ${{ inputs.RUNS_ON }}
     permissions:
       packages: write
     steps:

@@ -8,6 +8,7 @@ on:
 
 jobs:
   machine:
+    timeout-minutes: 5
     runs-on: ubuntu-20.04
     outputs:
       machine: ${{ steps.machine.outputs.machine }}

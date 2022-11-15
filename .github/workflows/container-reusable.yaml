@@ -78,9 +78,17 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
+      - name: Set up Docker Context for Buildx
+        id: buildx-context
+        run: |
+          docker context create builders
+
       - name: install buildx
         id: buildx
         uses: docker/setup-buildx-action@v2
+        with:
+          endpoint: builders
+
 
       - name: Docker meta
         id: meta

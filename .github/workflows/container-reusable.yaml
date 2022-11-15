@@ -110,6 +110,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          allow: security.insecure
           build-args: |
             GITLAB_PACKAGES_TOKEN=${{ secrets.GITLAB_PACKAGES_TOKEN }}
             GITHUB_USERNAME=${{ secrets.GIT_USERNAME }}

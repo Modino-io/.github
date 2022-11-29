@@ -86,27 +86,15 @@ jobs:
         with:
           endpoint: builders
 
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v4
-        with:
-          images: |
-            ${{ inputs.REGISTRY }}/modino/modino/${{ inputs.CALLER_REPOSITORY }}
-          tags: |
-            type=sha,priority=900,prefix=build-${{ github.run_id }}-
+      - name: Docker build and push
+        id: docker_build_push
+        run: |
+          docker build \
+          -t ${{ inputs.REGISTRY }}/modino/modino/${{ inputs.CALLER_REPOSITORY }}:build-${{ github.run_id }}-test \
+          --build-arg GITHUB_USERNAME=${{ secrets.GIT_USERNAME }} \
+          --build-arg GITHUB_TOKEN=${{ secrets.GIT_TOKEN }} \
+          --build-arg GITLAB_PACKAGES_TOKEN=${{ secrets.GIT_TOKEN }} \
+          --build-arg TARGETPLATFORM=${{ inputs.PLATFORMS }} \
+          -f ./Dockerfile_online .
 
-      - name: Build and push
-        id: docker_build
-        uses: docker/build-push-action@v3
-        with:
-          context: ./
-          file: ./${{ inputs.DOCKERFILE }}
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            GITLAB_PACKAGES_TOKEN=${{ secrets.GITLAB_PACKAGES_TOKEN }}
-            GITHUB_USERNAME=${{ secrets.GIT_USERNAME }}
-            GITHUB_TOKEN=${{ secrets.GIT_TOKEN }}
-            GITHUB_PACKAGES_TOKEN=${{ secrets.GIT_TOKEN }}
-            TARGETPLATFORM: ${{ inputs.PLATFORMS }}
+          docker push ${{ inputs.REGISTRY }}/modino/modino/${{ inputs.CALLER_REPOSITORY }}:build-${{ github.run_id }}-test

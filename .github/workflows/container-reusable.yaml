@@ -86,15 +86,24 @@ jobs:
         with:
           endpoint: builders
 
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            ${{ inputs.REGISTRY }}/modino/modino/${{ inputs.CALLER_REPOSITORY }}
+          tags: |
+            type=sha,priority=900,prefix=build-${{ github.run_id }}-
+
       - name: Docker build and push
         id: docker_build_push
         run: |
           docker build \
-          -t ${{ inputs.REGISTRY }}/modino/modino/${{ inputs.CALLER_REPOSITORY }}:build-${{ github.run_id }}-test \
+          -t ${{ steps.meta.outputs.labels }}:${{ steps.meta.outputs.tags }} \
           --build-arg GITHUB_USERNAME=${{ secrets.GIT_USERNAME }} \
           --build-arg GITHUB_TOKEN=${{ secrets.GIT_TOKEN }} \
           --build-arg GITLAB_PACKAGES_TOKEN=${{ secrets.GIT_TOKEN }} \
           --build-arg TARGETPLATFORM=${{ inputs.PLATFORMS }} \
           -f ./Dockerfile_online .
 
-          docker push ${{ inputs.REGISTRY }}/modino/modino/${{ inputs.CALLER_REPOSITORY }}:build-${{ github.run_id }}-test
+          docker push ${{ steps.meta.outputs.labels }}:${{ steps.meta.outputs.tags }}

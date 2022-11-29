@@ -75,8 +75,8 @@ jobs:
           username: ${{ secrets.REGISTRY_LOGIN }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
-#      - name: Set up QEMU
-#        uses: docker/setup-qemu-action@v2
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
 
       - name: Set up Docker Context for Buildx
         id: buildx-context-setup
@@ -88,13 +88,6 @@ jobs:
         uses: docker/setup-buildx-action@v2
         with:
           endpoint: mybuild
-
-      - name: Set up Docker Context for Buildx
-        id: buildx-context
-        run: |
-          docker buildx create --append --name mybuild node-amd64
-          docker buildx create --append --name mybuild node-arm64
-          docker buildx build --platform linux/amd64,linux/arm64 .
 
       - name: Docker meta
         id: meta

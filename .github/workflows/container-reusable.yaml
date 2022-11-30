@@ -108,7 +108,7 @@ jobs:
           --build-arg GITHUB_TOKEN=${{ secrets.GIT_TOKEN }} \
           --build-arg GITLAB_PACKAGES_TOKEN=${{ secrets.GIT_TOKEN }} \
           --build-arg TARGETPLATFORM=${{ inputs.PLATFORMS }} \
-          --build-arg BUILDPLATFORM=${{ inputs.BUILDPLATFORM }}
+          --build-arg BUILDPLATFORM=${{ inputs.BUILDPLATFORM }} \
           -f ./Dockerfile_online .
 
           docker push ${{ steps.meta.outputs.labels }}:${{ steps.meta.outputs.tags }}

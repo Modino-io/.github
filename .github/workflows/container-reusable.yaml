@@ -98,7 +98,7 @@ jobs:
       - name: Docker build and push
         id: docker_build_push
         run: |
-          IMAGE_NAME=(echo ${{ steps.meta.outputs.images }}:${{ steps.meta.outputs.tags }} | cut -c 2-)
+          IMAGE_NAME=$(echo ${{ steps.meta.outputs.images }}:${{ steps.meta.outputs.tags }} | cut -c 2-)
           docker build \
           -t $IMAGE_NAME \
           --build-arg GITHUB_USERNAME=${{ secrets.GIT_USERNAME }} \

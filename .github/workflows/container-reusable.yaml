@@ -104,7 +104,7 @@ jobs:
           -t ${IMAGE_NAME} \
           --build-arg GITHUB_USERNAME=${{ secrets.GIT_USERNAME }} \
           --build-arg GITHUB_TOKEN=${{ secrets.GIT_TOKEN }} \
-          --build-arg GITLAB_PACKAGES_TOKEN=${{ secrets.GIT_TOKEN }} \
+          --build-arg GITLAB_PACKAGES_TOKEN=${{ secrets.GITLAB_PACKAGES_TOKEN }} \
           --build-arg TARGETPLATFORM=${{ inputs.PLATFORMS }} \
           -f ./Dockerfile_online .
 

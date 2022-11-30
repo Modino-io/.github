@@ -18,9 +18,6 @@ on:
         PLATFORMS:
           required: true
           type: string
-        BUILDPLATFORM:
-          required: true
-          type: string
         RUNS_ON:
           required: true
           type: string
@@ -102,13 +99,13 @@ jobs:
         id: docker_build_push
         run: |
           IMAGE_NAME=$(echo ${{ steps.meta.outputs.images }}:${{ steps.meta.outputs.tags }} | cut -c 2-)
+
           docker build \
-          -t $IMAGE_NAME \
+          -t ${IMAGE_NAME} \
           --build-arg GITHUB_USERNAME=${{ secrets.GIT_USERNAME }} \
           --build-arg GITHUB_TOKEN=${{ secrets.GIT_TOKEN }} \
           --build-arg GITLAB_PACKAGES_TOKEN=${{ secrets.GIT_TOKEN }} \
           --build-arg TARGETPLATFORM=${{ inputs.PLATFORMS }} \
-          --build-arg BUILDPLATFORM=${{ inputs.BUILDPLATFORM }} \
           -f ./Dockerfile_online .
 
           docker push ${{ steps.meta.outputs.labels }}:${{ steps.meta.outputs.tags }}

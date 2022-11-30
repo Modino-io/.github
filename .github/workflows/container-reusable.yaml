@@ -18,6 +18,9 @@ on:
         PLATFORMS:
           required: true
           type: string
+        BUILDPLATFORM:
+          required: true
+          type: string
         RUNS_ON:
           required: true
           type: string
@@ -105,6 +108,7 @@ jobs:
           --build-arg GITHUB_TOKEN=${{ secrets.GIT_TOKEN }} \
           --build-arg GITLAB_PACKAGES_TOKEN=${{ secrets.GIT_TOKEN }} \
           --build-arg TARGETPLATFORM=${{ inputs.PLATFORMS }} \
+          --build-arg BUILDPLATFORM=${{ inputs.BUILDPLATFORM }}
           -f ./Dockerfile_online .
 
           docker push ${{ steps.meta.outputs.labels }}:${{ steps.meta.outputs.tags }}

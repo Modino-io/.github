@@ -108,4 +108,4 @@ jobs:
           --build-arg TARGETPLATFORM=${{ inputs.PLATFORMS }} \
           -f ./Dockerfile_online .
 
-          docker push ${{ steps.meta.outputs.labels }}:${{ steps.meta.outputs.tags }}
+          docker push ${IMAGE_NAME}

@@ -99,7 +99,7 @@ jobs:
         id: docker_build_push
         run: |
           docker build \
-          -t ${{ steps.meta.outputs.labels }}:${{ steps.meta.outputs.tags }} \
+          -t ${{ steps.meta.outputs.images }}:${{ steps.meta.outputs.tags }} \
           --build-arg GITHUB_USERNAME=${{ secrets.GIT_USERNAME }} \
           --build-arg GITHUB_TOKEN=${{ secrets.GIT_TOKEN }} \
           --build-arg GITLAB_PACKAGES_TOKEN=${{ secrets.GIT_TOKEN }} \

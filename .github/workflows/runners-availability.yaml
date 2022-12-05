@@ -25,10 +25,10 @@ jobs:
           fi
           done
           if [ $success -gt 0 ]; then
-              echo "machine=mac-mini"
+              echo "machine=mac-mini" >> $GITHUB_OUTPUT
               exit 0
           fi
-              echo "machine=ubuntu-20.04"
+              echo "machine=ubuntu-20.04" >> $GITHUB_OUTPUT
               exit 0
         env:
           webhook_servers: https://98.arm.runners.modino.dev/

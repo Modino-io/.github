@@ -18,7 +18,7 @@ jobs:
         shell: bash
         run: |
           success=0
-          for x in $arr; do
+          for x in $webhook_servers; do
           response=$(curl --write-out '%{http_code}' --silent --output /dev/null "$x")
           if [ $response = 200 ]; then
               success=$((success+1))

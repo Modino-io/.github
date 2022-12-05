@@ -109,3 +109,5 @@ jobs:
           -f ./Dockerfile_online .
 
           docker push ${IMAGE_NAME}
+        env:
+          TARGETPLATFORM: ${{ inputs.PLATFORMS }}

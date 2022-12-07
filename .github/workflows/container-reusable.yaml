@@ -100,12 +100,14 @@ jobs:
         run: |
           IMAGE_NAME=$(echo ${{ steps.meta.outputs.images }}:${{ steps.meta.outputs.tags }} | cut -c 2-)
 
+          export TARGETPLATFORM=${{ inputs.PLATFORMS }}
+
           docker build \
           -t ${IMAGE_NAME} \
           -f ./Dockerfile_online . \
           --build-arg GITHUB_USERNAME=${{ secrets.GIT_USERNAME }} \
           --build-arg GITHUB_TOKEN=${{ secrets.GIT_TOKEN }} \
-          --build-arg TARGETPLATFORM="${{ inputs.PLATFORMS }}" \
+          --build-arg TARGETPLATFORM=$TARGETPLATFORM \
           --build-arg GITLAB_PACKAGES_TOKEN=${{ secrets.GITLAB_PACKAGES_TOKEN }}
 
           docker push ${IMAGE_NAME}

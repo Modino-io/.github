@@ -102,11 +102,11 @@ jobs:
 
           docker build \
           -t ${IMAGE_NAME} \
+          -f ./Dockerfile_online . \
           --build-arg GITHUB_USERNAME=${{ secrets.GIT_USERNAME }} \
           --build-arg GITHUB_TOKEN=${{ secrets.GIT_TOKEN }} \
           --build-arg TARGETPLATFORM="${{ inputs.PLATFORMS }}" \
-          --build-arg GITLAB_PACKAGES_TOKEN=${{ secrets.GITLAB_PACKAGES_TOKEN }} \
-          -f ./Dockerfile_online .
+          --build-arg GITLAB_PACKAGES_TOKEN=${{ secrets.GITLAB_PACKAGES_TOKEN }}
 
           docker push ${IMAGE_NAME}
 

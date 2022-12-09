@@ -15,9 +15,6 @@ on:
         DOCKERFILE:
           required: true
           type: string
-        PLATFORMS:
-          required: true
-          type: string
         RUNS_ON:
           required: true
           type: string
@@ -91,8 +88,6 @@ jobs:
         id: docker_build
         run: |
           IMAGE_NAME=$(echo ${{ steps.meta.outputs.images }}:${{ steps.meta.outputs.tags }} | cut -c 2-)
-
-          export TARGETPLATFORM=${{ inputs.PLATFORMS }}
 
           docker build \
           -t ${IMAGE_NAME}-${{ matrix.arch }} \

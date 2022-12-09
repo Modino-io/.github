@@ -87,19 +87,22 @@ jobs:
       - name: Docker build and push
         id: docker_build
         run: |
-          IMAGE_NAME=$(echo ${{ steps.meta.outputs.images }}:${{ steps.meta.outputs.tags }} | cut -c 2-)
+          export IMAGE_NAME=$(echo ${{ steps.meta.outputs.images }}:${{ steps.meta.outputs.tags }} | cut -c 2-)
+          export ARCH=$(echo ${{ matrix.arch }} | cut -f2 -d"/" )
 
           docker build \
-          -t ${IMAGE_NAME}-${{ matrix.arch }} \
+          -t ${IMAGE_NAME}-${ARCH} \
           -f ./Dockerfile_online . \
           --build-arg GITHUB_USERNAME=${{ secrets.GIT_USERNAME }} \
           --build-arg GITHUB_TOKEN=${{ secrets.GIT_TOKEN }} \
           --build-arg TARGETPLATFORM=${{ matrix.arch }} \
           --build-arg GITLAB_PACKAGES_TOKEN=${{ secrets.GITLAB_PACKAGES_TOKEN }}
 
-          docker save -o ${IMAGE_NAME}-${{ matrix.arch }}.tar ${IMAGE_NAME}-${{ matrix.arch }}
+          docker save -o ${IMAGE_NAME}-${ARCH}.tar ${IMAGE_NAME}-${ARCH}
 
           echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_OUTPUT
+          echo "ARCH=${ARCH}" >> $GITHUB_OUTPUT
+
           echo "::set-output name=IMAGE_NAME::${IMAGE_NAME}"
 
 
@@ -107,7 +110,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: image-${{ matrix.arch }}
-          path: ./${{ steps.docker_build.outputs.IMAGE_NAME }}-${{ matrix.arch }}.tar
+          path: ./${{ steps.docker_build.outputs.IMAGE_NAME }}-${{ steps.docker_build.outputs.ARCH }}.tar
 
     outputs:
       IMAGE_NAME: ${{ steps.docker_build.outputs.IMAGE_NAME }}
@@ -135,15 +138,15 @@ jobs:
       - name: Load and combine Docker images
         run: |
           export IMAGE_NAME="${{ needs.build-images.outputs.IMAGE_NAME }}
-          docker load --input ./${IMAGE_NAME}-linux/amd64.tar
-          docker load --input ./${IMAGE_NAME}-linux/arm64.tar
+          docker load --input ./${IMAGE_NAME}-amd64.tar
+          docker load --input ./${IMAGE_NAME}-arm64.tar
 
-          docker push {IMAGE_NAME}-linux/amd64
-          docker push {IMAGE_NAME}-linux/arm64
+          docker push {IMAGE_NAME}-amd64
+          docker push {IMAGE_NAME}-arm64
 
           docker manifest create \
           ${IMAGE_NAME} \
-          --amend ${IMAGE_NAME}-linux/amd64 \
-          --amend ${IMAGE_NAME}-linux/arm64
+          --amend ${IMAGE_NAME}-amd64 \
+          --amend ${IMAGE_NAME}-arm64
 
           docker manifest push ${IMAGE_NAME}

@@ -40,7 +40,10 @@ on:
           required: true
 
 jobs:
-  publish-images:
+  build-images:
+    strategy:
+      matrix:
+          arch: [linux/amd64, linux/arm64]
     timeout-minutes: 60
     runs-on: ${{ inputs.RUNS_ON }}
     permissions:
@@ -85,19 +88,67 @@ jobs:
             type=sha,priority=900,prefix=build-${{ github.run_id }}-
 
       - name: Docker build and push
-        id: docker_build_push
+        id: docker_build
         run: |
           IMAGE_NAME=$(echo ${{ steps.meta.outputs.images }}:${{ steps.meta.outputs.tags }} | cut -c 2-)
 
           export TARGETPLATFORM=${{ inputs.PLATFORMS }}
 
           docker build \
-          -t ${IMAGE_NAME} \
+          -t ${IMAGE_NAME}-${{ matrix.arch }} \
           -f ./Dockerfile_online . \
           --build-arg GITHUB_USERNAME=${{ secrets.GIT_USERNAME }} \
           --build-arg GITHUB_TOKEN=${{ secrets.GIT_TOKEN }} \
-          --build-arg TARGETPLATFORM=$TARGETPLATFORM \
+          --build-arg TARGETPLATFORM=${{ matrix.arch }} \
           --build-arg GITLAB_PACKAGES_TOKEN=${{ secrets.GITLAB_PACKAGES_TOKEN }}
 
-          docker push ${IMAGE_NAME}
+          docker save -o ${IMAGE_NAME}-${{ matrix.arch }}.tar ${IMAGE_NAME}-${{ matrix.arch }}
 
+          echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_OUTPUT
+          echo "::set-output name=IMAGE_NAME::${IMAGE_NAME}"
+
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: image-${{ matrix.arch }}
+          path: ./${{ steps.docker_build.outputs.IMAGE_NAME }}-${{ matrix.arch }}.tar
+
+    outputs:
+      IMAGE_NAME: ${{ steps.docker_build.outputs.IMAGE_NAME }}
+
+  push:
+    name: Push Docker images
+    runs-on: ${{ inputs.RUNS_ON }}
+    needs: build-images
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Download arm image
+        uses: actions/download-artifact@v2
+        with:
+          name: image-linux/amd64
+          path: ./
+
+      - name: Download amd image
+        uses: actions/download-artifact@v2
+        with:
+          name: image-linux/arm64
+          path: ./
+
+      - name: Load and combine Docker images
+        run: |
+          export IMAGE_NAME="${{ needs.build-images.outputs.IMAGE_NAME }}
+          docker load --input ./${IMAGE_NAME}-linux/amd64.tar
+          docker load --input ./${IMAGE_NAME}-linux/arm64.tar
+
+          docker push {IMAGE_NAME}-linux/amd64
+          docker push {IMAGE_NAME}-linux/arm64
+
+          docker manifest create \
+          ${IMAGE_NAME} \
+          --amend ${IMAGE_NAME}-linux/amd64 \
+          --amend ${IMAGE_NAME}-linux/arm64
+
+          docker manifest push ${IMAGE_NAME}

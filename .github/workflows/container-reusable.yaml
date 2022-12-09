@@ -98,7 +98,7 @@ jobs:
           --build-arg TARGETPLATFORM=${{ matrix.arch }} \
           --build-arg GITLAB_PACKAGES_TOKEN=${{ secrets.GITLAB_PACKAGES_TOKEN }}
 
-          docker save -o ${IMAGE_NAME}-${ARCH}.tar ${IMAGE_NAME}-${ARCH}
+          docker save -o ${ARCH}.tar ${IMAGE_NAME}-${ARCH}
 
           echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_OUTPUT
           echo "ARCH=${ARCH}" >> $GITHUB_OUTPUT
@@ -138,8 +138,8 @@ jobs:
       - name: Load and combine Docker images
         run: |
           export IMAGE_NAME="${{ needs.build-images.outputs.IMAGE_NAME }}
-          docker load --input ./${IMAGE_NAME}-amd64.tar
-          docker load --input ./${IMAGE_NAME}-arm64.tar
+          docker load --input ./amd64.tar
+          docker load --input ./arm64.tar
 
           docker push {IMAGE_NAME}-amd64
           docker push {IMAGE_NAME}-arm64

@@ -110,7 +110,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: image-${{ matrix.arch }}
-          path: ./${{ steps.docker_build.outputs.IMAGE_NAME }}-${{ steps.docker_build.outputs.ARCH }}.tar
+          path: ./${{ steps.docker_build.outputs.ARCH }}.tar
 
     outputs:
       IMAGE_NAME: ${{ steps.docker_build.outputs.IMAGE_NAME }}
@@ -140,6 +140,8 @@ jobs:
           export IMAGE_NAME="${{ needs.build-images.outputs.IMAGE_NAME }}
           docker load --input ./amd64.tar
           docker load --input ./arm64.tar
+
+          docker images
 
           docker push {IMAGE_NAME}-amd64
           docker push {IMAGE_NAME}-arm64

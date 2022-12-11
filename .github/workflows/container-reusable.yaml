@@ -35,7 +35,6 @@ on:
           required: true
         GITLAB_REPOSITORY:
           required: true
-
 jobs:
   build-images:
     strategy:

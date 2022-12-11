@@ -130,6 +130,7 @@ jobs:
           registry: ${{ inputs.REGISTRY }}
           username: ${{ secrets.REGISTRY_LOGIN }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
+          logout: false
 
       - name: Download arm image
         uses: actions/download-artifact@v2

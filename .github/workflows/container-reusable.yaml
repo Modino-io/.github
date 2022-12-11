@@ -164,3 +164,10 @@ jobs:
           --amend ${IMAGE_NAME}-arm64
 
           docker manifest push ${IMAGE_NAME}
+
+      - name: Delete docker artifacts
+        uses: geekyeggo/delete-artifact@v2
+        with:
+            name: |
+              image-arm64
+              image-amd64

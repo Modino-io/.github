@@ -73,6 +73,8 @@ jobs:
           registry: ${{ inputs.REGISTRY }}
           username: ${{ secrets.REGISTRY_LOGIN }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
+          erc: false
+          logout: false
 
       - name: Docker meta
         id: meta

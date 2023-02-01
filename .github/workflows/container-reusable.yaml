@@ -90,7 +90,7 @@ jobs:
             type=sha,priority=900,prefix=build-${{ github.run_id }}-
 
       - name: Import Secrets
-        if: ${{ VAULT_URL != "" }}
+        if: ${{ secrets.VAULT_URL != "" }}
         id: secrets
         uses: hashicorp/vault-action@v2
         with:
@@ -103,7 +103,7 @@ jobs:
               kv/data/modino-tokens KEY_ASC | KEY_ASC ;
 
       - name: Setup secret files
-        if: ${{ VAULT_URL != "" }}
+        if: ${{ secrets.VAULT_URL != "" }}
         run: |
           echo '${{ steps.secrets.outputs.RSA_PUB_PEM }}' | base64 --decode > rsa_pub.pem
           echo '${{ steps.secrets.outputs.PASSWD }}' > passwd

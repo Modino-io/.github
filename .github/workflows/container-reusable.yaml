@@ -89,8 +89,18 @@ jobs:
           tags: |
             type=sha,priority=900,prefix=build-${{ github.run_id }}-
 
+      - name: Check for Secret availability
+        id: secret-check
+        shell: bash
+        run: |
+          if [ "${{ secrets.VAULT_URL }}" != '' ]; then
+            echo "get_secrets_from_vault=true" >> $GITHUB_OUTPUT;
+          else
+            echo "get_secrets_from_vault=false" >> $GITHUB_OUTPUT;
+          fi
+
       - name: Import Secrets
-        if: ${{ secrets.VAULT_URL != "" }}
+        if: ${{ steps.secret-check.outputs.get_secrets_from_vault == 'true' }}
         id: secrets
         uses: hashicorp/vault-action@v2
         with:
@@ -103,7 +113,7 @@ jobs:
               kv/data/modino-tokens KEY_ASC | KEY_ASC ;
 
       - name: Setup secret files
-        if: ${{ secrets.VAULT_URL != "" }}
+        if: ${{ steps.secret-check.outputs.get_secrets_from_vault == 'true' }}
         run: |
           echo '${{ steps.secrets.outputs.RSA_PUB_PEM }}' | base64 --decode > rsa_pub.pem
           echo '${{ steps.secrets.outputs.PASSWD }}' > passwd

@@ -117,7 +117,7 @@ jobs:
         run: |
           echo '${{ steps.secrets.outputs.RSA_PUB_PEM }}' | base64 --decode > rsa_pub.pem
           echo '${{ steps.secrets.outputs.PASSWD }}' > passwd
-          echo '${{ steps.secrets.outputs.KEY_ASC }}' | base64 --decode > key.asc.pem
+          echo '${{ steps.secrets.outputs.KEY_ASC }}' | base64 --decode > key.asc
 
       - name: Docker build and push
         id: docker_build

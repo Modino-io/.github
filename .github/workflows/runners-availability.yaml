@@ -35,7 +35,7 @@ jobs:
           fi
 
           for x in $WEBHOOK_SERVERS; do
-          response=$(curl -m 3 --write-out '%{http_code}' --silent --output /dev/null "$x")
+          response=$(curl --write-out '%{http_code}' --silent --output /dev/null "$x")
           if [ $response = 200 ]; then
               success=$((success+1))
           fi

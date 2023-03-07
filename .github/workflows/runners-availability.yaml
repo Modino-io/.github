@@ -35,17 +35,17 @@ jobs:
           fi
 
           for x in $WEBHOOK_SERVERS; do
-          response=$(curl --write-out '%{http_code}' --silent --output /dev/null "$x")
+          response=$(curl -m 3 --write-out '%{http_code}' --silent --output /dev/null "$x")
           if [ $response = 200 ]; then
               success=$((success+1))
           fi
           done
           if [ $success -gt 0 ]; then
-              echo machine=${{ inputs.RUNNER_ARCHITECTURE }} >> $GITHUB_OUTPUT
+              echo "machine=${{ inputs.RUNNER_ARCHITECTURE }}" >> $GITHUB_OUTPUT
               exit 0
           fi
               echo "machine=ubuntu-20.04" >> $GITHUB_OUTPUT
               exit 0
         env:
           arm_webhook_servers: "https://98.arm.runners.modino.dev/"
-          amd_webhook_servers: "https://cluster-6.test.modino.cloud/amd-self-hosted-runners/"
+          amd_webhook_servers: "https://runners.modino.dev/amd-self-hosted-runners-test/"

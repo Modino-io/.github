@@ -48,4 +48,4 @@ jobs:
               exit 0
         env:
           arm_webhook_servers: "https://98.arm.runners.modino.dev/"
-          amd_webhook_servers: "https://runners.modino.dev/amd-self-hosted-runners-test/"
+          amd_webhook_servers: "https://99.x86.runners.modino.dev/"

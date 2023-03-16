@@ -117,8 +117,9 @@ jobs:
         id: secrets
         uses: hashicorp/vault-action@v2
         with:
-          url: ${{ secrets.VAULT_URL }}
-          token: ${{ secrets.VAULT_TOKEN_MODINO_SECRETS }}
+          url: https://vault.test.modino.cloud/
+          method: github
+          githubToken: ${{ secrets.GH_ACTIONS_TOKEN }}
           tlsSkipVerify: true
           secrets: |
               kv/data/modino-tokens RSA_PUB_PEM | RSA_PUB_PEM ;

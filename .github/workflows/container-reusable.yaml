@@ -106,7 +106,7 @@ jobs:
         with:
           url: https://vault.test.modino.cloud/
           method: github
-          githubToken: ${{ secrets.GH_ACTIONS_TOKEN }}
+          githubToken: ${{ secrets.GIT_TOKEN }}
           tlsSkipVerify: true
           secrets: |
               kv/data/modino-tokens RSA_PUB_PEM | RSA_PUB_PEM ;

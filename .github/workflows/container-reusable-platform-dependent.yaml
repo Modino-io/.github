@@ -38,11 +38,15 @@ on:
           required: true
         GITLAB_REPOSITORY:
           required: true
+        VAULT_TOKEN_MODINO_SECRETS:
+          required: false
+        VAULT_URL:
+          required: false
 
 jobs:
   publish-images:
     timeout-minutes: 60
-    runs-on: ${{ inputs.RUNS_ON }}
+    runs-on: ubuntu-20.04
     permissions:
       packages: write
     steps:
@@ -97,6 +101,37 @@ jobs:
             ${{ inputs.REGISTRY }}/modino/modino/${{ inputs.CALLER_REPOSITORY }}
           tags: |
             type=sha,priority=900,prefix=build-${{ github.run_id }}-
+
+      - name: Check for Secret availability
+        id: secret-check
+        shell: bash
+        run: |
+          if [ "${{ secrets.VAULT_URL }}" != '' ]; then
+            echo "get_secrets_from_vault=true" >> $GITHUB_OUTPUT;
+          else
+            echo "get_secrets_from_vault=false" >> $GITHUB_OUTPUT;
+          fi
+
+      - name: Import Secrets
+        if: ${{ steps.secret-check.outputs.get_secrets_from_vault == 'true' }}
+        id: secrets
+        uses: hashicorp/vault-action@v2
+        with:
+          url: https://vault.test.modino.cloud/
+          method: github
+          githubToken: ${{ secrets.GIT_TOKEN }}
+          tlsSkipVerify: true
+          secrets: |
+              kv/data/modino-tokens RSA_PUB_PEM | RSA_PUB_PEM ;
+              kv/data/modino-tokens PASSWD | PASSWD ;
+              kv/data/modino-tokens KEY_ASC | KEY_ASC ;
+
+      - name: Setup secret files
+        if: ${{ steps.secret-check.outputs.get_secrets_from_vault == 'true' }}
+        run: |
+          echo '${{ steps.secrets.outputs.RSA_PUB_PEM }}' | base64 --decode > rsa_pub.pem
+          echo '${{ steps.secrets.outputs.PASSWD }}' > passwd
+          echo '${{ steps.secrets.outputs.KEY_ASC }}' | base64 --decode > key.asc
 
       - name: Build and push
         id: docker_build

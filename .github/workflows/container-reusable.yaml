@@ -131,7 +131,7 @@ jobs:
           -f ./Dockerfile_online . \
           --build-arg GITHUB_USERNAME=${{ secrets.GIT_USERNAME }} \
           --build-arg GITHUB_TOKEN=${{ secrets.GIT_TOKEN }} \
-          --build-arg TARGETPLATFORM=${{ matrix.arch }} \
+          --build-arg MODINO_CI_TAGETPLATFORM=${{ matrix.arch }} \
           --build-arg GITLAB_PACKAGES_TOKEN=${{ secrets.GITLAB_PACKAGES_TOKEN }}
 
           docker save -o ${ARCH}.tar ${ARCH}:tmp

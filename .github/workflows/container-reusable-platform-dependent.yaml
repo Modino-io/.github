@@ -24,7 +24,7 @@ on:
       secrets:
         MODINO_CI_GITHUB_USERNAME:
           required: true
-        GIT_TOKEN:
+        MODINO_CI_GITHUB_TOKEN:
           required: true
         MODINO_CI_GITLAB_TOKEN:
           required: true

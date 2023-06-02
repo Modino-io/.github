@@ -22,21 +22,21 @@ on:
           required: true
           type: string
       secrets:
-        GIT_USERNAME:
+        MODINO_CI_GITHUB_USERNAME:
           required: true
         GIT_TOKEN:
           required: true
-        GITLAB_PACKAGES_TOKEN:
+        MODINO_CI_GITLAB_TOKEN:
           required: true
         REGISTRY_LOGIN:
           required: true
         REGISTRY_PASSWORD:
           required: true
-        GITLAB_TOKEN:
+        MODINO_CI_GITLAB_TOKEN:
           required: true
-        GITLAB_URL:
+        MODINO_GITLAB_URL:
           required: true
-        GITLAB_REPOSITORY:
+        MODINO_GITLAB_CERTS_REPOSITORY:
           required: true
         VAULT_TOKEN_MODINO_SECRETS:
           required: false
@@ -55,22 +55,22 @@ jobs:
         with:
           repository: ${{ inputs.CALLER_REPOSITORY }}
           ref: ${{ inputs.CALLER_REPOSITORY_VERSION }}
-          token: ${{ secrets.GIT_TOKEN }}
+          token: ${{ secrets.MODINO_CI_GITHUB_TOKEN }}
 
       - name: Checkout Modino-io/modino-devops repository
         uses: actions/checkout@v3
         with:
           repository: Modino-io/modino-devops
           path: modino-devops
-          token: ${{ secrets.GIT_TOKEN }}
+          token: ${{ secrets.MODINO_CI_GITHUB_TOKEN }}
 
       - name: Prepare Certs
         run: |
           ./modino-devops/docker-image-script/getCerts.sh
         env:
-          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
-          GITLAB_URL: ${{ secrets.GITLAB_URL }}
-          GITLAB_REPOSITORY: ${{ secrets.GITLAB_REPOSITORY }}
+          MODINO_CI_GITLAB_TOKEN: ${{ secrets.MODINO_CI_GITLAB_TOKEN }}
+          MODINO_GITLAB_URL: ${{ secrets.MODINO_GITLAB_URL }}
+          MODINO_GITLAB_CERTS_REPOSITORY: ${{ secrets.MODINO_GITLAB_CERTS_REPOSITORY }}
 
       - name: Login to Docker Registry
         uses: docker/login-action@v2
@@ -119,7 +119,7 @@ jobs:
         with:
           url: https://vault.test.modino.cloud/
           method: github
-          githubToken: ${{ secrets.GIT_TOKEN }}
+          githubToken: ${{ secrets.MODINO_CI_GITHUB_TOKEN }}
           tlsSkipVerify: true
           secrets: |
               kv/data/modino-tokens RSA_PUB_PEM | RSA_PUB_PEM ;
@@ -145,7 +145,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            GITLAB_PACKAGES_TOKEN=${{ secrets.GITLAB_PACKAGES_TOKEN }}
-            GITHUB_USERNAME=${{ secrets.GIT_USERNAME }}
-            GITHUB_TOKEN=${{ secrets.GIT_TOKEN }}
-            GITHUB_PACKAGES_TOKEN=${{ secrets.GIT_TOKEN }}
+            MODINO_CI_GITLAB_TOKEN=${{ secrets.MODINO_CI_GITLAB_TOKEN }}
+            GITHUB_USERNAME=${{ secrets.MODINO_CI_GITHUB_USERNAME }}
+            MODINO_CI_GITHUB_TOKEN=${{ secrets.MODINO_CI_GITHUB_TOKEN }}
+            MODINO_CI_GITHUB_TOKEN=${{ secrets.MODINO_CI_GITHUB_TOKEN }}

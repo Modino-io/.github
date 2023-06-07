@@ -127,7 +127,7 @@ jobs:
           docker build \
           -t ${ARCH}:tmp \
           -f ./Dockerfile_online . \
-          --build-arg GITHUB_USERNAME=${{ secrets.MODINO_CI_GITHUB_USERNAME }} \
+          --build-arg MODINO_CI_GITHUB_USERNAME=${{ secrets.MODINO_CI_GITHUB_USERNAME }} \
           --build-arg MODINO_CI_GITHUB_TOKEN=${{ secrets.MODINO_CI_GITHUB_TOKEN }} \
           --build-arg MODINO_CI_TAGETPLATFORM=${{ matrix.arch }} \
           --build-arg MODINO_CI_GITLAB_TOKEN=${{ secrets.MODINO_CI_GITLAB_TOKEN }}

@@ -29,8 +29,6 @@ on:
           required: true
         REGISTRY_PASSWORD:
           required: true
-        MODINO_CI_GITLAB_TOKEN:
-          required: true
         MODINO_GITLAB_URL:
           required: true
         MODINO_GITLAB_CERTS_REPOSITORY:

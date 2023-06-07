@@ -32,8 +32,6 @@ on:
           required: true
         REGISTRY_PASSWORD:
           required: true
-        MODINO_CI_GITLAB_TOKEN:
-          required: true
         MODINO_GITLAB_URL:
           required: true
         MODINO_GITLAB_CERTS_REPOSITORY:
@@ -146,6 +144,6 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             MODINO_CI_GITLAB_TOKEN=${{ secrets.MODINO_CI_GITLAB_TOKEN }}
-            GITHUB_USERNAME=${{ secrets.MODINO_CI_GITHUB_USERNAME }}
+            MODINO_CI_GITHUB_USERNAME=${{ secrets.MODINO_CI_GITHUB_USERNAME }}
             MODINO_CI_GITHUB_TOKEN=${{ secrets.MODINO_CI_GITHUB_TOKEN }}
             MODINO_CI_GITHUB_TOKEN=${{ secrets.MODINO_CI_GITHUB_TOKEN }}

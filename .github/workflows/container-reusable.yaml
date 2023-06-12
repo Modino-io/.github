@@ -60,8 +60,8 @@ jobs:
             kv/data/modino-tokens KEY_ASC | KEY_ASC ;
             kv/data/modino-ci-secrets MODINO_CI_GITHUB_USERNAME | MODINO_CI_GITHUB_USERNAME ;
             kv/data/modino-ci-secrets MODINO_CI_GITLAB_TOKEN | MODINO_CI_GITLAB_TOKEN ;
-            kv/data/modino-ci-secrets REGISTRY_LOGIN | REGISTRY_LOGIN ;
-            kv/data/modino-ci-secrets REGISTRY_PASSWORD | REGISTRY_PASSWORD ;
+            kv/data/modino-ci-secrets MODINO_CI_GITLAB_USERNAME | REGISTRY_LOGIN ;
+            kv/data/modino-ci-secrets MODINO_CI_GITLAB_TOKEN | REGISTRY_PASSWORD ;
 
       - name: Setup secret files
         if: ${{ steps.secret-check.outputs.get_secrets_from_vault == 'true' }}

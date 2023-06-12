@@ -66,8 +66,8 @@ jobs:
             kv/data/modino-ci-secrets MODINO_CI_GITLAB_TOKEN | REGISTRY_PASSWORD ;
             kv/data/modino-ci-secrets MODINO_GITLAB_URL | MODINO_GITLAB_URL ;
             kv/data/modino-ci-secrets MODINO_GITLAB_CERTS_REPOSITORY | MODINO_GITLAB_CERTS_REPOSITORY ;
-            kv/data/modino-ci-secrets REGISTRY_LOGIN | REGISTRY_LOGIN ;
-            kv/data/modino-ci-secrets REGISTRY_PASSWORD | REGISTRY_PASSWORD ;
+            kv/data/modino-ci-secrets VAULT_TOKEN_MODINO_SECRETS | VAULT_TOKEN_MODINO_SECRETS ;
+
 
       - name: Setup secret files
         run: |

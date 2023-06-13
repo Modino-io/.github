@@ -128,4 +128,3 @@ jobs:
             MODINO_CI_GITLAB_TOKEN=${{ steps.secrets.outputs.MODINO_CI_GITLAB_TOKEN }}
             MODINO_CI_GITHUB_USERNAME=${{ steps.secrets.outputs.MODINO_CI_GITHUB_USERNAME }}
             MODINO_CI_GITHUB_TOKEN=${{ secrets.MODINO_CI_GITHUB_TOKEN }}
-            MODINO_CI_GITHUB_TOKEN=${{ secrets.MODINO_CI_GITHUB_TOKEN }}

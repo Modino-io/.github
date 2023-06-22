@@ -44,7 +44,6 @@ jobs:
         with:
           repository: Modino-io/modino-devops
           path: modino-devops
-          ref: refactor/440-env-vars-names-change
           token: ${{ secrets.MODINO_CI_GITHUB_TOKEN }}
 
       - name: Import Secrets

@@ -22,26 +22,8 @@ on:
           required: true
           type: string
       secrets:
-        GIT_USERNAME:
+        MODINO_CI_GITHUB_TOKEN:
           required: true
-        GIT_TOKEN:
-          required: true
-        GITLAB_PACKAGES_TOKEN:
-          required: true
-        REGISTRY_LOGIN:
-          required: true
-        REGISTRY_PASSWORD:
-          required: true
-        GITLAB_TOKEN:
-          required: true
-        GITLAB_URL:
-          required: true
-        GITLAB_REPOSITORY:
-          required: true
-        VAULT_TOKEN_MODINO_SECRETS:
-          required: false
-        VAULT_URL:
-          required: false
 
 jobs:
   publish-images:
@@ -55,29 +37,55 @@ jobs:
         with:
           repository: ${{ inputs.CALLER_REPOSITORY }}
           ref: ${{ inputs.CALLER_REPOSITORY_VERSION }}
-          token: ${{ secrets.GIT_TOKEN }}
+          token: ${{ secrets.MODINO_CI_GITHUB_TOKEN }}
 
       - name: Checkout Modino-io/modino-devops repository
         uses: actions/checkout@v3
         with:
           repository: Modino-io/modino-devops
           path: modino-devops
-          token: ${{ secrets.GIT_TOKEN }}
+          token: ${{ secrets.MODINO_CI_GITHUB_TOKEN }}
+
+      - name: Import Secrets
+        id: secrets
+        uses: hashicorp/vault-action@v2
+        with:
+          url: https://vault.test.modino.cloud/
+          method: github
+          githubToken: ${{ secrets.MODINO_CI_GITHUB_TOKEN }}
+          tlsSkipVerify: true
+          secrets: |
+            kv/data/modino-tokens RSA_PUB_PEM | RSA_PUB_PEM ;
+            kv/data/modino-tokens PASSWD | PASSWD ;
+            kv/data/modino-tokens KEY_ASC | KEY_ASC ;
+            kv/data/modino-ci-secrets MODINO_CI_GITHUB_USERNAME | MODINO_CI_GITHUB_USERNAME ;
+            kv/data/modino-ci-secrets MODINO_CI_GITLAB_USERNAME | MODINO_CI_GITLAB_USERNAME ;
+            kv/data/modino-ci-secrets MODINO_CI_GITLAB_TOKEN | MODINO_CI_GITLAB_TOKEN ;
+            kv/data/modino-ci-secrets MODINO_CI_GITLAB_USERNAME | REGISTRY_LOGIN ;
+            kv/data/modino-ci-secrets MODINO_CI_GITLAB_TOKEN | REGISTRY_PASSWORD ;
+            kv/data/modino-ci-secrets MODINO_GITLAB_URL | MODINO_GITLAB_URL ;
+            kv/data/modino-ci-secrets MODINO_GITLAB_CERTS_REPOSITORY | MODINO_GITLAB_CERTS_REPOSITORY ;
+
+      - name: Setup secret files
+        run: |
+          echo '${{ steps.secrets.outputs.RSA_PUB_PEM }}' | base64 --decode > rsa_pub.pem
+          echo '${{ steps.secrets.outputs.PASSWD }}' > passwd
+          echo '${{ steps.secrets.outputs.KEY_ASC }}' | base64 --decode > key.asc
 
       - name: Prepare Certs
         run: |
           ./modino-devops/docker-image-script/getCerts.sh
         env:
-          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
-          GITLAB_URL: ${{ secrets.GITLAB_URL }}
-          GITLAB_REPOSITORY: ${{ secrets.GITLAB_REPOSITORY }}
+          MODINO_CI_GITLAB_TOKEN: '${{ steps.secrets.outputs.MODINO_CI_GITLAB_TOKEN }}'
+          MODINO_GITLAB_URL: '${{ steps.secrets.outputs.MODINO_GITLAB_URL }}'
+          MODINO_GITLAB_CERTS_REPOSITORY: '${{ steps.secrets.outputs.MODINO_GITLAB_CERTS_REPOSITORY }}'
 
       - name: Login to Docker Registry
         uses: docker/login-action@v2
         with:
           registry: ${{ inputs.REGISTRY }}
-          username: ${{ secrets.REGISTRY_LOGIN }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+          username: ${{ steps.secrets.outputs.REGISTRY_LOGIN }}
+          password: ${{ steps.secrets.outputs.REGISTRY_PASSWORD }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -102,37 +110,6 @@ jobs:
           tags: |
             type=sha,priority=900,prefix=build-${{ github.run_id }}-
 
-      - name: Check for Secret availability
-        id: secret-check
-        shell: bash
-        run: |
-          if [ "${{ secrets.VAULT_URL }}" != '' ]; then
-            echo "get_secrets_from_vault=true" >> $GITHUB_OUTPUT;
-          else
-            echo "get_secrets_from_vault=false" >> $GITHUB_OUTPUT;
-          fi
-
-      - name: Import Secrets
-        if: ${{ steps.secret-check.outputs.get_secrets_from_vault == 'true' }}
-        id: secrets
-        uses: hashicorp/vault-action@v2
-        with:
-          url: https://vault.test.modino.cloud/
-          method: github
-          githubToken: ${{ secrets.GIT_TOKEN }}
-          tlsSkipVerify: true
-          secrets: |
-              kv/data/modino-tokens RSA_PUB_PEM | RSA_PUB_PEM ;
-              kv/data/modino-tokens PASSWD | PASSWD ;
-              kv/data/modino-tokens KEY_ASC | KEY_ASC ;
-
-      - name: Setup secret files
-        if: ${{ steps.secret-check.outputs.get_secrets_from_vault == 'true' }}
-        run: |
-          echo '${{ steps.secrets.outputs.RSA_PUB_PEM }}' | base64 --decode > rsa_pub.pem
-          echo '${{ steps.secrets.outputs.PASSWD }}' > passwd
-          echo '${{ steps.secrets.outputs.KEY_ASC }}' | base64 --decode > key.asc
-
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v3
@@ -145,7 +122,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            GITLAB_PACKAGES_TOKEN=${{ secrets.GITLAB_PACKAGES_TOKEN }}
-            GITHUB_USERNAME=${{ secrets.GIT_USERNAME }}
-            GITHUB_TOKEN=${{ secrets.GIT_TOKEN }}
-            GITHUB_PACKAGES_TOKEN=${{ secrets.GIT_TOKEN }}
+            MODINO_CI_GITLAB_TOKEN=${{ steps.secrets.outputs.MODINO_CI_GITLAB_TOKEN }}
+            MODINO_CI_GITHUB_USERNAME=${{ steps.secrets.outputs.MODINO_CI_GITHUB_USERNAME }}
+            MODINO_CI_GITHUB_TOKEN=${{ secrets.MODINO_CI_GITHUB_TOKEN }}

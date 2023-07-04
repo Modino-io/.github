@@ -58,6 +58,7 @@ jobs:
             kv/data/modino-tokens RSA_PUB_PEM | RSA_PUB_PEM ;
             kv/data/modino-tokens PASSWD | PASSWD ;
             kv/data/modino-tokens KEY_ASC | KEY_ASC ;
+            kv/data/modino-tokens MODINO_BUILD_PUBLIC_KEY | MODINO_BUILD_PUBLIC_KEY;
             kv/data/modino-ci-secrets MODINO_CI_GITHUB_USERNAME | MODINO_CI_GITHUB_USERNAME ;
             kv/data/modino-ci-secrets MODINO_CI_GITLAB_TOKEN | MODINO_CI_GITLAB_TOKEN ;
             kv/data/modino-ci-secrets MODINO_CI_GITLAB_USERNAME | REGISTRY_LOGIN ;
@@ -69,6 +70,8 @@ jobs:
           echo '${{ steps.secrets.outputs.RSA_PUB_PEM }}' | base64 --decode > rsa_pub.pem
           echo '${{ steps.secrets.outputs.PASSWD }}' > passwd
           echo '${{ steps.secrets.outputs.KEY_ASC }}' | base64 --decode > key.asc
+          echo '${{ steps.secrets.outputs.MODINO_BUILD_PUBLIC_KEY }}' | base64 --decode > src/main/resources/public_key.pem
+
 
       - name: Prepare Certs
         run: |

@@ -1,0 +1,83 @@
+#
+# Modino.io Confidential
+#
+# Object code only source materials
+#
+# Modino.io - Safe and Secure updates - Platform for safe and secure software delivery
+#
+# (C) Copyright Modino.io Sp. z o.o. <copyright@modino.io> 2020-2023. All Rights Reserved.
+#
+# The source code for this program is not published or otherwise
+# divested of its trade secrets, irrespective of what has
+# been deposited with any of the Copyright Offices.
+#
+name: "Add copyright"
+
+on:
+  workflow_call:
+    inputs:
+      CALLER_REPOSITORY:
+        required: true
+        type: string
+      CALLER_REPOSITORY_VERSION:
+        required: true
+        type: string
+      RUNS_ON:
+        required: true
+        type: string
+      ADD_COPYRIGHT_TO:
+        required: true
+        type: string
+    secrets:
+      MODINO_CI_GITHUB_TOKEN:
+        required: true
+      CI_ROBOT_GPG_PRIVATE_KEY:
+        required: true
+      CI_ROBOT_GPG_PRIVATE_KEY_PASSWORD:
+        required: true
+
+jobs:
+  add-copyright:
+    timeout-minutes: 5
+    runs-on: ${{ inputs.RUNS_ON }}
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Modino-io/modino-devops repository
+        uses: actions/checkout@v3
+        with:
+          repository: Modino-io/modino-devops
+          token: ${{ secrets.MODINO_CI_GITHUB_TOKEN }}
+          sparse-checkout: |
+            copyright
+          sparse-checkout-cone-mode: false
+
+      - name: Checkout caller repository
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ inputs.CALLER_REPOSITORY }}
+          path: ${{ inputs.CALLER_REPOSITORY }}
+          ref: ${{ inputs.CALLER_REPOSITORY_VERSION }}
+          token: ${{ secrets.MODINO_CI_GITHUB_TOKEN }}
+
+      - name: Add copyright
+        run: |
+          ./copyright/add-copyright.sh ${{ inputs.ADD_COPYRIGHT_TO }}
+
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.CI_ROBOT_GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.CI_ROBOT_GPG_PRIVATE_KEY_PASSWORD }}
+          workdir: ${{ inputs.CALLER_REPOSITORY }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_user_name: Modion.io Actions Bot
+          commit_user_email: robot@modino.io
+          commit_author: Bender Bending Rodríguez <robot@modino.io>
+          commit_message: "chore: adds Modino.io copyright notice [skip ci]"
+          repository: ${{ inputs.CALLER_REPOSITORY }}
+          commit_options: '--gpg-sign'

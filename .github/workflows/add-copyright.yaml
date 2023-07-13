@@ -67,7 +67,7 @@ jobs:
       - name: Add copyright
         run: |
           ./copyright/add-copyright.sh ${{ inputs.ADD_COPYRIGHT_TO }}
-        with:
+        env:
           LICENSE_FILE_TYPE: ${{ inputs.LICENSE_FILE_TYPE }}
 
       - name: Import GPG key

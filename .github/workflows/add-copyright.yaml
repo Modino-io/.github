@@ -84,6 +84,6 @@ jobs:
           commit_user_name: Modion.io Actions Bot
           commit_user_email: robot@modino.io
           commit_author: Bender Bending Rodríguez <robot@modino.io>
-          commit_message: "chore: adds Modino.io copyright notice [skip ci]"
+          commit_message: "chore: adds Modino.io copyright notice"
           repository: ${{ inputs.CALLER_REPOSITORY }}
           commit_options: '--gpg-sign'

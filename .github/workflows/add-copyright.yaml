@@ -28,6 +28,10 @@ on:
       ADD_COPYRIGHT_TO:
         required: true
         type: string
+      LICENSE_FILE_TYPE:
+        required: false
+        type: string
+        default: public
     secrets:
       MODINO_CI_GITHUB_TOKEN:
         required: true
@@ -63,6 +67,8 @@ jobs:
       - name: Add copyright
         run: |
           ./copyright/add-copyright.sh ${{ inputs.ADD_COPYRIGHT_TO }}
+        with:
+          LICENSE_FILE_TYPE: ${{ inputs.LICENSE_FILE_TYPE }}
 
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v5

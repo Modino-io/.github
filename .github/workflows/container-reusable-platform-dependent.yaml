@@ -55,6 +55,7 @@ jobs:
           githubToken: ${{ secrets.MODINO_CI_GITHUB_TOKEN }}
           tlsSkipVerify: true
           secrets: |
+            kv/data/modino-tokens RSA_PRI_PEM | RSA_PRI_PEM ;
             kv/data/modino-tokens RSA_PUB_PEM | RSA_PUB_PEM ;
             kv/data/modino-tokens PASSWD | PASSWD ;
             kv/data/modino-tokens KEY_ASC | KEY_ASC ;
@@ -68,9 +69,14 @@ jobs:
 
       - name: Setup secret files
         run: |
+          echo '${{ steps.secrets.outputs.RSA_PRI_PEM }}' | base64 --decode > rsa_pri.pem
           echo '${{ steps.secrets.outputs.RSA_PUB_PEM }}' | base64 --decode > rsa_pub.pem
           echo '${{ steps.secrets.outputs.PASSWD }}' > passwd
           echo '${{ steps.secrets.outputs.KEY_ASC }}' | base64 --decode > key.asc
+          mkdir -p resources
+          cp rsa_pri.pem resources/rsa_pri.pem
+          cp key.asc resources/key.asc
+          cp passwd resources/passwd
 
       - name: Prepare Certs
         run: |

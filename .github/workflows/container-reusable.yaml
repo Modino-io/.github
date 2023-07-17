@@ -65,7 +65,6 @@ jobs:
             kv/data/modino-ci-secrets MODINO_CI_GITLAB_TOKEN | REGISTRY_PASSWORD ;
 
       - name: Setup secret files
-        if: ${{ steps.secret-check.outputs.get_secrets_from_vault == 'true' }}
         run: |
           echo '${{ steps.secrets.outputs.RSA_PUB_PEM }}' | base64 --decode > rsa_pub.pem
           echo '${{ steps.secrets.outputs.PASSWD }}' > passwd

@@ -3,7 +3,7 @@ name: '08. Hi-Fis'
 about: Turn Wireframes into High fidelity designs
 title: "[HI-FI] Title"
 labels: 'type: ui :art:, who: design'
-assignees: hadashi-h
+assignees: 
 
 ---
 
@@ -24,8 +24,8 @@ This would help in future reference of connected issues and finding out decision
 - Research: [issue name](link) or #issue_no
 - Other: [issue name](link) or #issue_no
 -->
-- Epic(s): [epic name](link) or #epic_no
-- Wireframes: [issue name](link) or #issue_no
+- Epic(s): 
+- Wireframes: 
 
 #### Links
 <!--- Various resources necessary to understand the issue presented. Example: -->
@@ -50,12 +50,11 @@ This would help in future reference of connected issues and finding out decision
 ### Solution Quality
 - [ ] [If there's room for exploration] Create 2 – 3 variations of (exemplary) visual designs
 - [ ] Provided design follows the style and requirements set by [Material](https://material.io/)
-- [ ] Provided design follows the style and requirements set by [Modino](figma link)
+- [ ] Provided design follows the style and requirements set by [Modino](https://www.figma.com/files/project/63530307/Libraries?fuid=1123560620713370098)
 - [ ] Interactions are included in the prototype
-
+- [ ] Colors and typography are set by library variables
 - [ ] Hand-off (once screens are final)
-  - [ ] If necessary, provide redlines in a separate frame with suffix "SPECS" (frame-name--SPECS)
-  - [ ] Graphical assets made exportable through Figma
+  - [ ] If necessary, graphical assets made exportable through Figma
 
 ### Common Agreement
 - [ ] Development team confirmed that there are no technical limitations or restrictions
@@ -64,8 +63,12 @@ This would help in future reference of connected issues and finding out decision
 - [ ] PM / architect were participating in design critiques. Sprint playback must not be a surprise for them.
 
 ### Documentation
-- [ ] Progress was documented each day you worked on this story; document design decisions and agreements
+- [ ] Once a Figma file is created, mark the Wireframes story as "having a HiFi file"
+- [ ] Document design decisions and agreements
+- [ ] Recordings of design critiques added in comments of the story
 - [ ] FEDs crossreference their issue to this one
+- [ ] Once finished, the story has been moved to the [Catalogue](https://www.figma.com/files/project/50585973/Modino.io-Catalogue?fuid=1123560620713370098)
+- [ ] Once the story has been moved to the Catalogue, mark the story as moved to Catalogue
 
 ---
 ---
@@ -83,7 +86,7 @@ This would help in future reference of connected issues and finding out decision
 - Pictures: [Google Drive](link)
 - Other: [Google Drive](link)
 -->
-- Prototypes: [Figma](link)
+- Prototypes: 
 
 ### Screenshots
 <!--- A picture is worth a 1000 words. -->

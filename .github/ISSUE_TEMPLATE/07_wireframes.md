@@ -3,7 +3,7 @@ name: 07. Wireframes
 about: Create a visual solution of a problem
 title: "[WIREFRAMES] Title"
 labels: 'type: ux :pencil2:, who: design'
-assignees: hadashi-h
+assignees: 
 
 ---
 
@@ -24,8 +24,8 @@ This would help in future reference of connected issues and finding out decision
 - Research: [issue name](link) or #issue_no
 - Other: [issue name](link) or #issue_no
 -->
-- Epic(s): [epic name](link) or #epic_no
-- Hi-Fis: [issue name](link) or #issue_no
+- Epic(s): 
+- Hi-Fis: 
 
 #### Links
 <!--- Various resources necessary to understand the issue presented. Example: -->
@@ -39,7 +39,7 @@ This would help in future reference of connected issues and finding out decision
 
 ### Acceptance criteria
 - [ ] User flows with wireframes created that cover…
-[LIST defined upon creation]
+    - [ ] [LIST defined upon creation]
 
 ### Other information (_optional_)
 <!--- Anything else we should know about the issue? -->
@@ -54,7 +54,7 @@ This would help in future reference of connected issues and finding out decision
    - [ ] Secondary flows (e.g. unexpected input, something fails,…)
    - [ ] Behaviour specs included for every wireframe (screen-to-screen interactions, general behaviour, inputs…)
 - [ ] Provided design follows the style and requirements set by [Material](https://material.io/)
-- [ ] Provided design follows the style and requirements set by [Modino](figma link)
+- [ ] Provided design follows the style and requirements set by [Modino](https://www.figma.com/files/project/63530307/Libraries?fuid=1123560620713370098)
 - [ ] Interactions are included in the prototype
 
 ### Common Agreement
@@ -64,7 +64,8 @@ This would help in future reference of connected issues and finding out decision
 - [ ] PM / architect were participating in design critiques. Sprint playback must not be a surprise for them.
 
 ### Documentation
-- [ ] Progress was documented each day you worked on this story; document design decisions and agreements
+- [ ] Documented design decisions and agreements
+- [ ] Recordings of design critiques added in comments of the story
 - [ ] Follow-up HI-FI issue has been created and is referencing these wireframes
 - [ ] FEDs or BEDs crossreference their issue to this one
 
@@ -84,7 +85,7 @@ This would help in future reference of connected issues and finding out decision
 - Pictures: [Google Drive](link)
 - Other: [Google Drive](link)
 -->
-- Prototypes: [Figma](link)
+- Prototypes: 
 
 ### Screenshots
 <!--- A picture is worth a 1000 words. -->

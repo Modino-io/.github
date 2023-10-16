@@ -3,7 +3,7 @@ name: 10. Generic / Default
 about: Use this template if you're sure no other template fits your needs
 title: "[GENERIC] Title"
 labels: "state: incubating \U0001F95A"
-assignees: hadashi-h, Klarys
+assignees: 
 
 ---
 

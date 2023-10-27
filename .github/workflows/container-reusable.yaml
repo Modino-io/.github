@@ -48,7 +48,7 @@ jobs:
 
       - name: Import Secrets
         id: secrets
-        uses: hashicorp/vault-action@main
+        uses: hashicorp/vault-action@v2
         with:
           url: https://vault.test.modino.cloud/
           method: github

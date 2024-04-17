@@ -3,7 +3,7 @@ name: 02. Bug report
 about: Create a report to help us improve
 title: "[BUG] Title"
 labels: ''
-assignees: Klarys
+assignees: 
 
 ---
 

@@ -3,7 +3,7 @@ name: 01. Feature Request
 about: Request a new feature or functionality
 title: "[FEAT] Title"
 labels: ''
-assignees: Klarys
+assignees: 
 
 ---
 

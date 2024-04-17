@@ -3,7 +3,7 @@ name: 03. Change Request
 about: Change to an existing solution
 title: "[CHNG_REQ] Title"
 labels: ''
-assignees: Klarys
+assignees: 
 
 ---
 

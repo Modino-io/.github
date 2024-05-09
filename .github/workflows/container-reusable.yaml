@@ -50,7 +50,7 @@ jobs:
         id: secrets
         uses: hashicorp/vault-action@v2
         with:
-          url: https://vault.test.modino.cloud/
+          url: https://vault.dev.modino.cloud/
           method: github
           githubToken: ${{ secrets.MODINO_CI_GITHUB_TOKEN }}
           tlsSkipVerify: true
@@ -136,7 +136,7 @@ jobs:
         id: secrets
         uses: hashicorp/vault-action@v2
         with:
-          url: https://vault.test.modino.cloud/
+          url: https://vault.dev.modino.cloud/
           method: github
           githubToken: ${{ secrets.MODINO_CI_GITHUB_TOKEN }}
           tlsSkipVerify: true

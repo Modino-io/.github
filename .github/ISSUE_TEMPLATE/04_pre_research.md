@@ -3,7 +3,7 @@ name: 04. Pre-research
 about: Preparation for research - identification of research scope
 title: "[PRE-RESEARCH] Title"
 labels: "type: docs \U0001F4C4"
-assignees: hadashi-h
+assignees: 
 
 ---
 

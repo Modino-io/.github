@@ -3,7 +3,7 @@ name: 06. Interview
 about: Conduct an interview
 title: "[INTERVIEW] [Name of interviewee] [Company]"
 labels: "type: docs \U0001F4C4, who: design"
-assignees: hadashi-h
+assignees: 
 
 ---
 

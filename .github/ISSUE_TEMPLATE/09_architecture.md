@@ -3,7 +3,7 @@ name: '09. Architecture (planning)'
 about: Plan possible architecture and figure out technical approach
 title: "[ARCHITECTURE] Title"
 labels: ''
-assignees: blazejpawlak
+assignees: 
 
 ---
 
